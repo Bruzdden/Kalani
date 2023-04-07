@@ -151,6 +151,9 @@
 			<input type="text" placeholder="Search...">
 			<button>Search</button>
 		</div>
+		<div class="register">
+			<button onclick="window.location.href='register.php'">Register</button>
+		</div>
 	</div>
 
 	<div class="section">

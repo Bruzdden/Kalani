@@ -121,6 +121,42 @@
 			border: none;
 		}
 
+		footer {
+			background-color: #333;
+			color: #fff;
+			padding: 20px;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			box-sizing: border-box;
+		}
+
+		footer .container {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
+			align-items: center;
+		}
+
+		footer h3 {
+			font-size: 1.5rem;
+			margin-bottom: 20px;
+		}
+
+		footer p {
+			font-size: 1.2rem;
+			margin-bottom: 10px;
+		}
+
+		footer a {
+			color: #fff;
+			text-decoration: none;
+		}
+		footer a:hover {
+			color: #fff;
+			text-decoration: underline;
+		}
+
 		@media screen and (max-width: 768px) {
 			.section {
 				flex-direction: column;
@@ -132,6 +168,18 @@
 
 			.calendar {
 				flex-basis: 100%;
+			}
+
+			footer {
+				text-align: center;
+			}
+			
+			footer .col-sm-6 {
+				flex-basis: 100%;
+				margin-bottom: 20px;
+			}
+			footer .container {
+				flex-direction: column;
 			}
 		}
 	</style>
@@ -220,6 +268,26 @@
 			<iframe src="https://calendar.google.com/calendar/embed?src=YOUR_CALENDAR_ID_HERE&ctz=Europe%2FLondon" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
 		</div>
 	</div>
+	<footer>
+	<div class="container">
+		<div class="row">
+		<div class="col-sm-6">
+			<h3>Contact Us</h3>
+			<p>Email: contact@mywebsite.com</p>
+			<p>Phone: 555-123-4567</p>
+			<p>Address: 123 Main St, Anytown USA</p>
+		</div>
+		<div class="col-sm-6">
+			<h3>Follow Us</h3>
+			<p><a href="#">Facebook</a></p>
+			<p><a href="#">Twitter</a></p>
+			<p><a href="#">Instagram</a></p>
+		</div>
+		</div>
+	</div>
+	</footer>
+
+
 
 </body>
 </html>

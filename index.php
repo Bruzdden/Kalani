@@ -3,195 +3,17 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style.css">
 	<title>My Website</title>
-	<style>
-		* {
-			box-sizing: border-box;
-			margin: 0;
-			padding: 0;
-		}
-
-		body {
-			font-family: Arial, sans-serif;
-		}
-
-		.navbar {
-			background-color: #333;
-			color: #fff;
-			display: flex;
-			flex-wrap: wrap;
-			justify-content: space-between;
-			padding: 10px;
-		}
-
-		.navbar img {
-			height: 50px;
-		}
-
-		.navbar ul {
-			display: flex;
-			list-style: none;
-		}
-
-		.navbar li {
-			margin: 0 10px;
-		}
-
-		.navbar li a {
-			color: #fff;
-			text-decoration: none;
-		}
-
-		.searchbar {
-			display: flex;
-			align-items: center;
-		}
-
-		.searchbar input[type="text"] {
-			padding: 5px;
-			border: none;
-			border-radius: 3px;
-			margin-right: 5px;
-		}
-
-		.searchbar button {
-			padding: 5px 10px;
-			border: none;
-			border-radius: 3px;
-			background-color: #4CAF50;
-			color: #fff;
-			cursor: pointer;
-		}
-
-		.section {
-			display: flex;
-			flex-wrap: wrap;
-			padding: 10px;
-			margin: 10px 0;
-		}
-
-		.section h2 {
-			font-size: 24px;
-			font-weight: bold;
-			flex-basis: 100%;
-			margin: 10px 0;
-		}
-
-		.item {
-			display: flex;
-			flex-direction: column;
-			flex-basis: calc(20% - 20px);
-			margin: 10px;
-			border: 1px solid #ccc;
-			padding: 10px;
-			border-radius: 5px;
-		}
-
-		.item img {
-			width: 100%;
-			height: 150px;
-			object-fit: cover;
-			margin-bottom: 10px;
-		}
-
-		.item h3 {
-			font-size: 16px;
-			font-weight: bold;
-			margin: 0;
-			text-align: center;
-		}
-
-		.calendar {
-			flex-basis: calc(30% - 20px);
-			margin: 10px;
-			padding: 10px;
-			border: 1px solid #ccc;
-			border-radius: 5px;
-		}
-
-		.calendar h2 {
-			font-size: 24px;
-			font-weight: bold;
-			margin: 10px 0;
-		}
-
-		.calendar iframe {
-			width: 100%;
-			height: 500px;
-			border: none;
-		}
-
-		footer {
-			background-color: #333;
-			color: #fff;
-			padding: 20px;
-			bottom: 0;
-			left: 0;
-			width: 100%;
-			box-sizing: border-box;
-		}
-
-		footer .container {
-			display: flex;
-			flex-wrap: wrap;
-			justify-content: space-between;
-			align-items: center;
-		}
-
-		footer h3 {
-			font-size: 1.5rem;
-			margin-bottom: 20px;
-		}
-
-		footer p {
-			font-size: 1.2rem;
-			margin-bottom: 10px;
-		}
-
-		footer a {
-			color: #fff;
-			text-decoration: none;
-		}
-		footer a:hover {
-			color: #fff;
-			text-decoration: underline;
-		}
-
-		@media screen and (max-width: 768px) {
-			.section {
-				flex-direction: column;
-			}
-
-			.item {
-				flex-basis: calc(50% - 20px);
-			}
-
-			.calendar {
-				flex-basis: 100%;
-			}
-
-			footer {
-				text-align: center;
-			}
-			
-			footer .col-sm-6 {
-				flex-basis: 100%;
-				margin-bottom: 20px;
-			}
-			footer .container {
-				flex-direction: column;
-			}
-		}
-	</style>
 </head>
 <body>
 
 	<div class="navbar">
 		<img src="logo.png" alt="Logo">
 		<ul>
-			<li><a href="#">Home</a></li>
-			<li><a href="#">Calendar</a></li>
-			<li><a href="#">List</a></li>
+			<li><a href="index.php">Home</a></li>
+			<li><a href="login.php">Calendar</a></li>
+			<li><a href="login.php">List</a></li>
 			<li><a href="#">Contact</a></li>
 		</ul>
 
@@ -199,8 +21,17 @@
 			<input type="text" placeholder="Search...">
 			<button>Search</button>
 		</div>
+		<div class="login">
+			<button onclick="window.location.href='login.php'">Login</button>
+		</div>
+		<div class="logout">
+            <button onclick="window.location.href='logout.php'">Logout</button>
+        </div>
 		<div class="register">
 			<button onclick="window.location.href='register.php'">Register</button>
+		</div>
+		<div class="usermanagement">
+			<button onclick="window.location.href='UserManagement.php'">UM</button>
 		</div>
 	</div>
 

@@ -36,19 +36,21 @@ class MySQLiDB implements IDB {
         return mysqli_query($this->db, $sql);
     }
     
-    public function _update(string $table, int $id, array $data): bool {
+    public function _update(string $table, string $primaryKey, int $id, array $data): bool {
         $set = array_map(function ($key, $value) {
             return "$key = '" . $this->db->real_escape_string($value) . "'";
         }, array_keys($data), array_values($data));
         $set = implode(',', $set);
-        $sql = "UPDATE $table SET $set WHERE id = $id";
+        $sql = "UPDATE $table SET $set WHERE $primaryKey = $id";
         return mysqli_query($this->db, $sql);
     }
     
-    public function _delete(string $table, int $id): bool {
-        $sql = "DELETE FROM $table WHERE id = $id";
+    
+    public function _delete(string $table, int $id, string $primary_key = 'id'): bool {
+        $sql = "DELETE FROM $table WHERE $primary_key = $id";
         return mysqli_query($this->db, $sql);
     }
+
     public function getLastError(): array {
         return array($this->db->errno, $this->db->sqlstate, $this->db->error);
     }

@@ -1,7 +1,9 @@
 <?php
+//It needs mysqlidb class so this will include it
 require_once "IDB.php";
 require_once "MySQLiDB.php";
 
+// Create a new MySQLiDB instance
 $db = new MySQLiDB();
 
 // Connect to the database
@@ -76,6 +78,54 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             margin: 0;
         }
 
+        .navbar {
+            background-color: #333;
+            color: #fff;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 10px;
+        }
+
+        .navbar img {
+            height: 50px;
+        }
+
+        .navbar ul {
+            display: flex;
+            list-style: none;
+        }
+
+        .navbar li {
+            margin: 0 10px;
+        }
+
+        .navbar li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .searchbar {
+            display: flex;
+            align-items: center;
+        }
+
+        .searchbar input[type="text"] {
+            padding: 5px;
+            border: none;
+            border-radius: 3px;
+            margin-right: 5px;
+        }
+
+        .searchbar button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 3px;
+            background-color: #4CAF50;
+            color: #fff;
+            cursor: pointer;
+        }
+
         .container {
             max-width: 500px;
             margin: 0 auto;
@@ -142,8 +192,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </style>
 </head>
 <body>
+    <div class="navbar">
+        <img src="logo.png" alt="Logo">
+        <ul>
+            <li><a href="index.php">Home</a></li>
+            <li><a href="login.php">Calendar</a></li>
+            <li><a href="login.php">List</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+
+        <div class="searchbar">
+            <input type="text" placeholder="Search...">
+            <button>Search</button>
+        </div>
+        <div class="login">
+            <button onclick="window.location.href='login.php'">Login</button>
+        </div>
+        <div class="register">
+            <button onclick="window.location.href='register.php'">Register</button>
+        </div>
+        <div class="usermanagement">
+            <button onclick="window.location.href='UserManagement.php'">UM</button>
+        </div>
+    </div>
+
     <div class="container">
         <h1>Registration Form</h1>
+        <?php if (isset($error)): ?>
+        <div style="color: red;"><?php echo $error; ?></div>
+        <?php endif; ?>
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
             <div class="form-group">
                 <label for="name">Username:</label>

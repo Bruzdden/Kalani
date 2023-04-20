@@ -255,9 +255,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </ul>
 
         <div class="searchbar">
-            <input type="text" placeholder="Search...">
-            <button>Search</button>
-        </div>
+            <form action="graphql.php" method="POST">
+                <input type="text" name="search" placeholder="Search...">
+                <button type="submit">Search</button>
+            </form>
+	    </div>
         <div class="user">
 			<button class="userbtn" id="button"><img src="profile.png"></button>
 			<ul class="userlist" id="list">

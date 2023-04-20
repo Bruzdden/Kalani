@@ -1,6 +1,12 @@
 <?php
 session_start();
 
+if (isset($_SESSION['idUser'])) {
+    header('Location: index.php');
+    exit();
+}
+
+
 //It needs mysqlidb class so this will include it
 require_once "IDB.php";
 require_once "MySQLiDB.php";
@@ -28,19 +34,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["login"])) {
         $user = $result[0];
         if (password_verify($password, $user["password"])) {
 
-            // Start the session and set the user's ID and username
-            session_start();
-            $_SESSION["idUser"] = $user["id"];
             $_SESSION["name"] = $user["name"];
+            $_SESSION["password"] = $user["password"];
+            $_SESSION["rank"] = $user["rank"];
 
-            // Redirect to the home page
-            header("Location: index.php");
-            exit;
+
         }
     }
 
     // Display an error message if the login failed
     $error = "Invalid username or password";
+}
+if (isset($_SESSION["name"])) {
+    header("Location: index.php");
 }
 ?>
 
@@ -183,14 +189,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["login"])) {
             <input type="text" placeholder="Search...">
             <button>Search</button>
         </div>
-        <div class="login">
-            <button onclick="window.location.href='login.php'">Login</button>
-        </div>
-        <div class="register">
-            <button onclick="window.location.href='register.php'">Register</button>
-        </div>
-        <div class="usermanagement">
-            <button onclick="window.location.href='UserManagement.php'">UM</button>
+        <div class="user">
+			<button class="userbtn" id="button"><img src="profile.png"></button>
+			<ul class="userlist" id="list">
+                <li class="listitem">
+                    <div class="login">
+                        <button onclick="window.location.href='login.php'">Login</button>
+                    </div>
+                </li>
+                <li class="listitem">
+                    <div class="register">
+                        <button onclick="window.location.href='register.php'">Register</button>
+                    </div>
+                </li>
+			</ul>
         </div>
         
     </div>
@@ -219,5 +231,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["login"])) {
 			    <button onclick="window.location.href='register.php'">Not registered yet?</button>
 		</div>
     </div>
+    <script src="script.js"></script>
 </body>
 </html>

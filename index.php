@@ -27,18 +27,24 @@
 			<button type="submit">Search</button>
 		</form>
 	</div>
-	<div class="login">
-		<button onclick="window.location.href='login.php'">Login</button>
-	</div>
 	<div class="logout">
 		<button onclick="window.location.href='logout.php'">Logout</button>
 	</div>
-	<div class="register">
-		<button onclick="window.location.href='register.php'">Register</button>
-	</div>
-	<div class="usermanagement">
-		<button onclick="window.location.href='UserManagement.php'">UM</button>
-	</div>
+	<div class="user">
+		<button class="userbtn" id="button"><img src="profile.png"></button>
+		<ul class="userlist" id="list">
+            <li class="listitem">
+                <div class="login">
+                    <button onclick="window.location.href='login.php'">Login</button>
+                </div>
+            </li>
+            <li class="listitem">
+                <div class="register">
+                    <button onclick="window.location.href='register.php'">Register</button>
+                </div>
+            </li>
+		</ul>
+    </div>
 </nav>
 
 <section class="section">

@@ -2,7 +2,7 @@
 session_start();
 
 // Check if the user is logged in and has rank 1
-if (!isset($_SESSION['user_id']) || $_SESSION['user_rank'] != 1) {
+if (!isset($_SESSION['name']) || $_SESSION['rank'] != 1) {
     header('Location: login.php');
     exit();
 }

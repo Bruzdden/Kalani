@@ -205,14 +205,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="text" placeholder="Search...">
             <button>Search</button>
         </div>
-        <div class="login">
-            <button onclick="window.location.href='login.php'">Login</button>
-        </div>
-        <div class="register">
-            <button onclick="window.location.href='register.php'">Register</button>
-        </div>
-        <div class="usermanagement">
-            <button onclick="window.location.href='UserManagement.php'">UM</button>
+        <div class="user">
+			<button class="userbtn" id="button"><img src="profile.png"></button>
+			<ul class="userlist" id="list">
+                <li class="listitem">
+                    <div class="login">
+                        <button onclick="window.location.href='login.php'">Login</button>
+                    </div>
+                </li>
+                <li class="listitem">
+                    <div class="register">
+                        <button onclick="window.location.href='register.php'">Register</button>
+                    </div>
+                </li>
+			</ul>
         </div>
     </div>
 
@@ -241,5 +247,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="submit" value="Register" class="submit-btn">
         </form>
     </div>
+    <script src="script.js"></script>
 </body>
 </html>

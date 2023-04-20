@@ -40,7 +40,7 @@
 				</li>
 				<li class="listitem">
 					<div class="register">
-						<button onclick="window.location.href='register.php'">Register</button>
+						<button onclick="window.location.href='register.php'">Registerr</button>
 					</div>
 				</li>
 			</ul>

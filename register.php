@@ -181,6 +181,59 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         .submit-btn:hover {
             background-color: #3e8e41;
         }
+        .user {
+            position: relative; 
+        }
+        
+        .userbtn {
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+        }
+
+        .userbtn img {
+            width: 50px;
+            height: 50px;
+        }
+        
+
+        .userlist {
+            display: none; 
+            position: absolute;
+            top: 100%;
+            right: 0;
+            z-index: 1; 
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+
+        .listitem {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+        }
+        
+        .login button,
+        .register button {
+            border: none;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .login button:hover,
+        .register button:hover {
+            background-color: #0062cc;
+        }
 
         @media only screen and (max-width: 600px) {
             .container {

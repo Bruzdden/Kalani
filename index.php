@@ -119,14 +119,12 @@
 		<div class="row">
 		<div class="col-sm-6">
 			<h3>Contact Us</h3>
-			<p>Email: contact@mywebsite.com</p>
-			<p>Phone: 555-123-4567</p>
-			<p>Address: 123 Main St, Anytown USA</p>
+			<p>Email: l.divoch@seznam.cz</p>
+			<p>Phone: ne</p>
 		</div>
 		<div class="col-sm-6">
 			<h3>Follow Us</h3>
-			<p><a href="#">Facebook</a></p>
-			<p><a href="#">Twitter</a></p>
+			<p><a href="https://twitter.com/MaxmilianDao">Twitter</a></p>
 			<p><a href="#">Instagram</a></p>
 		</div>
 		</div>

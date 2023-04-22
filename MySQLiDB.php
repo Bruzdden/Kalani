@@ -4,10 +4,11 @@ require_once "IDB.php";
 class MySQLiDB implements IDB {
     private $db;
     
-    public function _connect(string $dbhost = "", string $dbuser = "", string $dbpass = "", string $dbname = ""){
-        $this->db = new mysqli($dbhost, $dbuser, $dbpass, $dbname, 11936);
-        return null;
-    }
+    public function _connect(string $dbhost = "", string $dbuser = "", string $dbpass = "", string $dbname = "", string $port = "") {
+    $this->db = new mysqli($dbhost, $dbuser, $dbpass, $dbname, $port);
+    return null;
+}
+
     
     public function _select(string $table, array $fields = [], array $conditions = []): array {
         $sql = "SELECT " . (!empty($fields) ? implode(",", $fields) : "*") . " FROM " . $table;

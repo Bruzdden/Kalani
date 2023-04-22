@@ -1,12 +1,3 @@
--- phpMyAdmin SQL Dump
--- version 4.5.4.1
--- http://www.phpmyadmin.net
---
--- Počítač: localhost
--- Vytvořeno: Úte 18. dub 2023, 11:37
--- Verze serveru: 5.7.11
--- Verze PHP: 7.0.3
-
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
@@ -25,6 +16,10 @@ SET time_zone = "+00:00";
 --
 -- Struktura tabulky `user`
 --
+CREATE DATABASE IF NOT EXISTS `kalani`;
+
+USE `kalani`;
+
 
 CREATE TABLE `user` (
   `idUser` int(11) NOT NULL,

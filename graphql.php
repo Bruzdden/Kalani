@@ -1,5 +1,16 @@
 <?php
+session_start();
+
 require __DIR__ . '/vendor/autoload.php';
+require_once "IDB.php";
+require_once "MySQLiDB.php";
+
+// Create a new MySQLiDB instance
+$db = new MySQLiDB();
+
+// Connect to the database
+$db->_connect("localhost", "root", "root", "kalani");
+
 
 $client = new \GuzzleHttp\Client([
     'verify' => false,
@@ -57,8 +68,28 @@ foreach ($data['data']['Page']['media'] as $anime)
         $html .= '<p>ID: N/A</p>';
     }
 
-    $html .= '<button type="submit">+</button>';
+    $html .= '<form method="post"><button type="submit" name="add">Like</button></form>';
     $html .= '</div>';
+}
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add"])){
+    if(!isset($_SESSION["name"])){
+        header("Location: login.php");
+        exit();
+    }
+    $user_data = array(
+        "idUser" => $_SESSION['idUser'],
+        "idAnime" => $anime['id']
+    );
+    $insert = $db->_insert('anime', $user_data);
+
+    if (!$insert) {
+        $error_info = $db->getLastError();
+        // Other database error
+        echo "Error: " . $error_info[2];
+        exit();
+    }
+    header('Location: index.php');
+    exit();
 }
 
 $html .= '</div>'; // Close the div.section

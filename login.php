@@ -34,6 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["login"])) {
         $user = $result[0];
         if (password_verify($password, $user["password"])) {
 
+            $_SESSION["idUser"] = $user["idUser"];
             $_SESSION["name"] = $user["name"];
             $_SESSION["password"] = $user["password"];
             $_SESSION["rank"] = $user["rank"];

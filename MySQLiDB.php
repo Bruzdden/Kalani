@@ -5,7 +5,7 @@ class MySQLiDB implements IDB {
     private $db;
     
     public function _connect(string $dbhost = "", string $dbuser = "", string $dbpass = "", string $dbname = ""){
-        $this->db = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
+        $this->db = new mysqli($dbhost, $dbuser, $dbpass, $dbname, 11936);
         return null;
     }
     

@@ -5,7 +5,7 @@ class MySQLiDB implements IDB {
     private $db;
     
     public function _connect(string $dbhost = "", string $dbuser = "", string $dbpass = "", string $dbname = ""){
-        $this->db = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
+        $this->db = new mysqli($dbhost, $dbuser, $dbpass, $dbname, 11936);
         return null;
     }
     
@@ -32,7 +32,7 @@ class MySQLiDB implements IDB {
         $values = array_map(function ($value) {
             return "'" . $this->db->real_escape_string($value) . "'";
         }, array_values($data));
-        $sql = "INSERT INTO $table (" . implode(',', $keys) . ") VALUES (" . implode(',', $values) . ")";
+        echo $sql = "INSERT INTO $table (" . implode(',', $keys) . ") VALUES (" . implode(',', $values) . ")";
         return mysqli_query($this->db, $sql);
     }
     

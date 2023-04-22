@@ -27,11 +27,11 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `user` (
-  `idUser` int(11) NOT NULL,
-  `name` varchar(45) CHARACTER SET utf8 COLLATE utf8_czech_ci NOT NULL,
-  `password` varchar(64) CHARACTER SET utf8 COLLATE utf8_czech_ci NOT NULL,
-  `email` varchar(45) CHARACTER SET utf8 COLLATE utf8_czech_ci NOT NULL,
-  `rank` varchar(4) CHARACTER SET utf8 COLLATE utf8_czech_ci DEFAULT NULL
+                      `idUser` int(11) NOT NULL,
+                      `name` varchar(45) CHARACTER SET utf8 COLLATE utf8_czech_ci NOT NULL,
+                      `password` varchar(64) CHARACTER SET utf8 COLLATE utf8_czech_ci NOT NULL,
+                      `email` varchar(45) CHARACTER SET utf8 COLLATE utf8_czech_ci NOT NULL,
+                      `rank` varchar(4) CHARACTER SET utf8 COLLATE utf8_czech_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -47,7 +47,6 @@ ALTER TABLE `user`
 --
 -- AUTO_INCREMENT pro tabulky
 --
-
 --
 -- AUTO_INCREMENT pro tabulku `user`
 --
@@ -58,8 +57,8 @@ ALTER TABLE `user`
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
 CREATE TABLE `anime` (
-  `idUser` INT,
-  `idAnime` INT,
-  PRIMARY KEY (`idUser`, `idAnime`),
-  FOREIGN KEY (`idUser`) REFERENCES `user`(`idUser`)
+                       `idUser` INT,
+                       `idAnime` INT,
+                       PRIMARY KEY (`idUser`, `idAnime`),
+                       FOREIGN KEY (`idUser`) REFERENCES `user`(`idUser`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_czech_ci;

@@ -65,7 +65,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 ?>
 
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -182,9 +181,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             background-color: #3e8e41;
         }
         .user {
-            position: relative; 
+            position: relative;
         }
-        
+
         .userbtn {
             border: none;
             background-color: transparent;
@@ -195,14 +194,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             width: 50px;
             height: 50px;
         }
-        
+
 
         .userlist {
-            display: none; 
+            display: none;
             position: absolute;
             top: 100%;
             right: 0;
-            z-index: 1; 
+            z-index: 1;
             padding: 0;
             margin: 0;
             list-style: none;
@@ -211,7 +210,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             border-radius: 5px;
             box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
         }
-        
+
 
         .listitem {
             display: flex;
@@ -219,7 +218,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             justify-content: center;
             padding: 10px;
         }
-        
+
         .login button,
         .register button {
             border: none;
@@ -229,7 +228,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             border-radius: 5px;
             cursor: pointer;
         }
-        
+
         .login button:hover,
         .register button:hover {
             background-color: #0062cc;
@@ -245,63 +244,63 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </style>
 </head>
 <body>
-    <div class="navbar">
-        <img src="logo.png" alt="Logo">
-        <ul>
-            <li><a href="index.php">Home</a></li>
-            <li><a href="login.php">Calendar</a></li>
-            <li><a href="login.php">List</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
+<div class="navbar">
+    <img src="logo.png" alt="Logo">
+    <ul>
+        <li><a href="index.php">Home</a></li>
+        <li><a href="login.php">Calendar</a></li>
+        <li><a href="login.php">List</a></li>
+        <li><a href="#">Contact</a></li>
+    </ul>
 
-        <div class="searchbar">
-            <form action="graphql.php" method="POST">
-                <input type="text" name="search" placeholder="Search...">
-                <button type="submit">Search</button>
-            </form>
-	    </div>
-        <div class="user">
-			<button class="userbtn" id="button"><img src="profile.png"></button>
-			<ul class="userlist" id="list">
-                <li class="listitem">
-                    <div class="login">
-                        <button onclick="window.location.href='login.php'">Login</button>
-                    </div>
-                </li>
-                <li class="listitem">
-                    <div class="register">
-                        <button onclick="window.location.href='register.php'">Register</button>
-                    </div>
-                </li>
-			</ul>
-        </div>
-    </div>
-
-    <div class="container">
-        <h1>Registration Form</h1>
-        <?php if (isset($error)): ?>
-        <div style="color: red;"><?php echo $error; ?></div>
-        <?php endif; ?>
-        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-            <div class="form-group">
-                <label for="name">Username:</label>
-                <input type="text" name="name" id="name" class="form-control" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" name="email" id="email" class="form-control" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" name="password" id="password" class="form-control" required>
-            </div>
-            <div class="form-group">
-                <label for="confirm_password">Confirm Password:</label>
-                <input type="password" name="confirm_password" id="confirm_password" class="form-control" required>
-            </div>
-            <input type="submit" value="Register" class="submit-btn">
+    <div class="searchbar">
+        <form action="graphql.php" method="POST">
+            <input type="text" name="search" placeholder="Search...">
+            <button type="submit">Search</button>
         </form>
     </div>
-    <script src="script.js"></script>
+    <div class="user">
+        <button class="userbtn" id="button"><img src="profile.png"></button>
+        <ul class="userlist" id="list">
+            <li class="listitem">
+                <div class="login">
+                    <button onclick="window.location.href='login.php'">Login</button>
+                </div>
+            </li>
+            <li class="listitem">
+                <div class="register">
+                    <button onclick="window.location.href='register.php'">Register</button>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="container">
+    <h1>Registration Form</h1>
+    <?php if (isset($error)): ?>
+        <div style="color: red;"><?php echo $error; ?></div>
+    <?php endif; ?>
+    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+        <div class="form-group">
+            <label for="name">Username:</label>
+            <input type="text" name="name" id="name" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="confirm_password">Confirm Password:</label>
+            <input type="password" name="confirm_password" id="confirm_password" class="form-control" required>
+        </div>
+        <input type="submit" value="Register" class="submit-btn">
+    </form>
+</div>
+<script src="script.js"></script>
 </body>
 </html>

@@ -33,12 +33,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["login"])) {
         // Verify the hashed password
         $user = $result[0];
         if (password_verify($password, $user["password"])) {
-
             $_SESSION["name"] = $user["name"];
             $_SESSION["password"] = $user["password"];
             $_SESSION["rank"] = $user["rank"];
-
-
         }
     }
 
@@ -166,9 +163,9 @@ if (isset($_SESSION["name"])) {
             background-color: #3e8e41;
         }
         .user {
-            position: relative; 
+            position: relative;
         }
-        
+
         .userbtn {
             border: none;
             background-color: transparent;
@@ -179,14 +176,14 @@ if (isset($_SESSION["name"])) {
             width: 50px;
             height: 50px;
         }
-        
+
 
         .userlist {
-            display: none; 
+            display: none;
             position: absolute;
             top: 100%;
             right: 0;
-            z-index: 1; 
+            z-index: 1;
             padding: 0;
             margin: 0;
             list-style: none;
@@ -195,7 +192,7 @@ if (isset($_SESSION["name"])) {
             border-radius: 5px;
             box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
         }
-        
+
 
         .listitem {
             display: flex;
@@ -203,7 +200,7 @@ if (isset($_SESSION["name"])) {
             justify-content: center;
             padding: 10px;
         }
-        
+
         .login button,
         .register button {
             border: none;
@@ -213,7 +210,7 @@ if (isset($_SESSION["name"])) {
             border-radius: 5px;
             cursor: pointer;
         }
-        
+
         .login button:hover,
         .register button:hover {
             background-color: #0062cc;
@@ -229,63 +226,63 @@ if (isset($_SESSION["name"])) {
     </style>
 </head>
 <body>
-    <div class="navbar">
-        <img src="logo.png" alt="Logo">
-        <ul>
-            <li><a href="index.php">Home</a></li>
-            <li><a href="login.php">Calendar</a></li>
-            <li><a href="login.php">List</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
+<div class="navbar">
+    <img src="logo.png" alt="Logo">
+    <ul>
+        <li><a href="index.php">Home</a></li>
+        <li><a href="login.php">Calendar</a></li>
+        <li><a href="login.php">List</a></li>
+        <li><a href="#">Contact</a></li>
+    </ul>
 
-        <div class="searchbar">
-            <form action="graphql.php" method="POST">
-                <input type="text" name="search" placeholder="Search...">
-                <button type="submit">Search</button>
-            </form>
-	    </div>
-        <div class="user">
-			<button class="userbtn" id="button"><img src="profile.png"></button>
-			<ul class="userlist" id="list">
-                <li class="listitem">
-                    <div class="login">
-                        <button onclick="window.location.href='login.php'">Login</button>
-                    </div>
-                </li>
-                <li class="listitem">
-                    <div class="register">
-                        <button onclick="window.location.href='register.php'">Register</button>
-                    </div>
-                </li>
-			</ul>
-        </div>
-        
-    </div>
-
-
-    <div class="container">
-        <h1>Login</h1>
-        <?php if (isset($error)): ?>
-            <div style="color: red;"><?php echo $error; ?></div>
-        <?php endif; ?>
-        <form method="post">
-            <div class="form-group">
-                <label for="name">Username:</label>
-                <input type="text" name="name" class="form-control" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" name="password" class="form-control" required>
-            </div>
-            <div>
-                <button type="submit" name="login" class="submit-btn">Login</button>
-            </div>
-            
+    <div class="searchbar">
+        <form action="graphql.php" method="POST">
+            <input type="text" name="search" placeholder="Search...">
+            <button type="submit">Search</button>
         </form>
-        <div class="register">
-			    <button onclick="window.location.href='register.php'">Not registered yet?</button>
-		</div>
     </div>
-    <script src="script.js"></script>
+    <div class="user">
+        <button class="userbtn" id="button"><img src="profile.png"></button>
+        <ul class="userlist" id="list">
+            <li class="listitem">
+                <div class="login">
+                    <button onclick="window.location.href='login.php'">Login</button>
+                </div>
+            </li>
+            <li class="listitem">
+                <div class="register">
+                    <button onclick="window.location.href='register.php'">Register</button>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+</div>
+
+
+<div class="container">
+    <h1>Login</h1>
+    <?php if (isset($error)): ?>
+        <div style="color: red;"><?php echo $error; ?></div>
+    <?php endif; ?>
+    <form method="post">
+        <div class="form-group">
+            <label for="name">Username:</label>
+            <input type="text" name="name" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" name="password" class="form-control" required>
+        </div>
+        <div>
+            <button type="submit" name="login" class="submit-btn">Login</button>
+        </div>
+
+    </form>
+    <div class="register">
+        <button onclick="window.location.href='register.php'">Not registered yet?</button>
+    </div>
+</div>
+<script src="script.js"></script>
 </body>
 </html>

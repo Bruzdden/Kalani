@@ -55,6 +55,8 @@ ALTER TABLE `user`
 CREATE TABLE `anime` (
   `idUser` INT,
   `idAnime` INT,
+  `currentDate` DATETIME DEFAULT CURRENT_TIMESTAMP, 
   PRIMARY KEY (`idUser`, `idAnime`),
   FOREIGN KEY (`idUser`) REFERENCES `user`(`idUser`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_czech_ci;
+

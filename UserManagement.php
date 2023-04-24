@@ -17,7 +17,7 @@ require_once 'mysqlidb.php';
 $db = new MySQLiDB();
 
 // Connect to the database
-$db->_connect("localhost", "root", "root", "kalani");
+$db->_connect();
 
 
 // Check if the delete form has been submitted

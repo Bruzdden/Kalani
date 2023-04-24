@@ -3,10 +3,23 @@ require_once "IDB.php";
 
 class MySQLiDB implements IDB {
     private $db;
+    private $dbhost;
+    private $dbuser;
+    private $dbpass;
+    private $dbname;
+    private $dbport;
+
+    public function __construct(){
+        $this->dbhost = "localhost";
+        $this->dbuser = "root";
+        $this->dbpass = "root";
+        $this->dbname = "kalani";
+        $this->dbport = "3306";
+    }
     
-    public function _connect(string $dbhost = "", string $dbuser = "", string $dbpass = "", string $dbname = "", string $port = "") {
-    $this->db = new mysqli($dbhost, $dbuser, $dbpass, $dbname, $port);
-    return null;
+    public function _connect() {
+        $this->db = new mysqli($this->dbhost, $this->dbuser, $this->dbpass, $this->dbname, $this->dbport);
+        return null;
 }
 
     
@@ -51,6 +64,19 @@ class MySQLiDB implements IDB {
         $sql = "DELETE FROM $table WHERE $primary_key = $id";
         return mysqli_query($this->db, $sql);
     }
+    
+    public function _delete_anime(string $table, array $ids, array $primary_keys = ['id']): bool {
+        $where = [];
+        foreach ($primary_keys as $primary_key) {
+            $where[] = "$primary_key = ?";
+        }
+        $where_clause = implode(' AND ', $where);
+        $sql = "DELETE FROM $table WHERE $where_clause";
+        $stmt = mysqli_prepare($this->db, $sql);
+        mysqli_stmt_bind_param($stmt, str_repeat('i', count($ids)), ...$ids);
+        return mysqli_stmt_execute($stmt);
+    }
+    
 
     public function getLastError(): array {
         return array($this->db->errno, $this->db->sqlstate, $this->db->error);

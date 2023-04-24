@@ -9,7 +9,7 @@ require_once "MySQLiDB.php";
 $db = new MySQLiDB();
 
 // Connect to the database
-$db->_connect("localhost", "root", "root", "kalani");
+$db->_connect();
 
 
 $client = new \GuzzleHttp\Client([
@@ -68,7 +68,7 @@ foreach ($data['data']['Page']['media'] as $anime)
         $html .= '<p>ID: N/A</p>';
     }
 
-    $html .= '<form method="post"><button type="submit" name="add">Like</button></form>';
+    $html .= '<form method="post"><input type="hidden" name="anime_id" value="' . $anime['id'] . '"><button type="submit" name="add">Like</button></form>';
     $html .= '</div>';
 }
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add"])){
@@ -76,17 +76,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add"])){
         header("Location: login.php");
         exit();
     }
+    $animeId = $_POST["anime_id"];
+
     $user_data = array(
         "idUser" => $_SESSION['idUser'],
-        "idAnime" => $anime['id']
+        "idAnime" => $animeId
     );
+
+    $select = $db->_select('anime', [], ['idUser' => $_SESSION['idUser'], 'idAnime' => $animeId]);
+    if (count($select) == 1){
+        $delete = $db->_delete_anime('anime', [$_SESSION['idUser'], $animeId], ['idUser', 'idAnime']);
+        if ($delete) {
+            header('Location: index.php');
+            exit();
+    }
+        else {
+            $error = $db->getLastError();
+            echo "Error deleting user: " . print_r($error, true);
+    }
+    }
     $insert = $db->_insert('anime', $user_data);
 
     if (!$insert) {
         $error_info = $db->getLastError();
-        // Other database error
         echo "Error: " . $error_info[2];
         exit();
+    
+
+    
+
+    
     }
     header('Location: index.php');
     exit();

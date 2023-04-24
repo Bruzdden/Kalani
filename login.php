@@ -15,7 +15,7 @@ require_once "MySQLiDB.php";
 $db = new MySQLiDB();
 
 // Connect to the database
-$db->_connect("localhost", "root", "root", "kalani");
+$db->_connect();
 
 // Check if the login form was submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["login"])) {

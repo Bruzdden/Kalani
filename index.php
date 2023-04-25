@@ -12,40 +12,10 @@
 
 <body>
 
-	<nav class="navbar">
-		<img class="halo" src="logo.svg" alt="Logo">
-		<ul>
-			<li><a href="index.php">Home</a></li>
-			<li><a href="login.php">Calendar</a></li>
-			<li><a href="login.php">List</a></li>
-			<li><a href="#">Contact</a></li>
-		</ul>
-
-		<div class="searchbar">
-			<form action="graphql.php" method="POST">
-				<input type="text" name="search" placeholder="Search...">
-				<button type="submit">Search</button>
-			</form>
-		</div>
-		<div class="logout">
-			<button onclick="window.location.href='logout.php'">Logout</button>
-		</div>
-		<div class="user">
-			<button class="userbtn" id="button"><img src="profile.png"></button>
-			<ul class="userlist" id="list">
-				<li class="listitem">
-					<div class="login">
-						<button onclick="window.location.href='login.php'">Login</button>
-					</div>
-				</li>
-				<li class="listitem">
-					<div class="register">
-						<button onclick="window.location.href='register.php'">Registerr</button>
-					</div>
-				</li>
-			</ul>
-		</div>
-	</nav>
+	<?php
+	session_start();
+	require_once("header.php");
+	?>
 
 	<section class="section">
 		<h2>New</h2>

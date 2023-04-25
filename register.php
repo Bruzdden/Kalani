@@ -78,54 +78,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             margin: 0;
         }
 
-        .navbar {
-            background-color: #333;
-            color: #fff;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            padding: 10px;
-        }
-
-        .navbar img {
-            height: 50px;
-        }
-
-        .navbar ul {
-            display: flex;
-            list-style: none;
-        }
-
-        .navbar li {
-            margin: 0 10px;
-        }
-
-        .navbar li a {
-            color: #fff;
-            text-decoration: none;
-        }
-
-        .searchbar {
-            display: flex;
-            align-items: center;
-        }
-
-        .searchbar input[type="text"] {
-            padding: 5px;
-            border: none;
-            border-radius: 3px;
-            margin-right: 5px;
-        }
-
-        .searchbar button {
-            padding: 5px 10px;
-            border: none;
-            border-radius: 3px;
-            background-color: #4CAF50;
-            color: #fff;
-            cursor: pointer;
-        }
-
         .container {
             max-width: 500px;
             margin: 0 auto;
@@ -245,37 +197,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </style>
 </head>
 <body>
-    <div class="navbar">
-        <img src="logo.png" alt="Logo">
-        <ul>
-            <li><a href="index.php">Home</a></li>
-            <li><a href="login.php">Calendar</a></li>
-            <li><a href="login.php">List</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
 
-        <div class="searchbar">
-            <form action="graphql.php" method="POST">
-                <input type="text" name="search" placeholder="Search...">
-                <button type="submit">Search</button>
-            </form>
-	    </div>
-        <div class="user">
-			<button class="userbtn" id="button"><img src="profile.png"></button>
-			<ul class="userlist" id="list">
-                <li class="listitem">
-                    <div class="login">
-                        <button onclick="window.location.href='login.php'">Login</button>
-                    </div>
-                </li>
-                <li class="listitem">
-                    <div class="register">
-                        <button onclick="window.location.href='register.php'">Register</button>
-                    </div>
-                </li>
-			</ul>
-        </div>
-    </div>
+    <?php
+	require_once("header.php");
+	?>
 
     <div class="container">
         <h1>Registration Form</h1>

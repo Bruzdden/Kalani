@@ -8,7 +8,6 @@ if (!isset($_SESSION['name']) || $_SESSION['rank'] != 1) {
 }
 
 //It needs mysqlidb class so this will include it
-require_once "IDB.php";
 require_once 'mysqlidb.php';
 
 
@@ -30,6 +29,7 @@ if (isset($_POST['delete_user'])) {
         $error = $db->getLastError();
         echo "Error deleting user: " . print_r($error, true);
     }
+// Check if the make admin form has been submitted
 } else if (isset($_POST['make_admin'])) {
     $idUser = $_POST['user_id'];
     $result = $db->_update('user', 'idUser', $idUser, ['rank' => 1]);
@@ -39,6 +39,7 @@ if (isset($_POST['delete_user'])) {
         $error = $db->getLastError();
         echo "Error updating user: " . print_r($error, true);
     }
+// Check if the derank admin form has been submitted
 } else if (isset($_POST['derank_user'])) {
     $idUser = $_POST['user_id'];
     $result = $db->_update('user', 'idUser', $idUser, ['rank' => null]);

@@ -1,6 +1,6 @@
 <?php
+
 //It needs mysqlidb class so this will include it
-require_once "IDB.php";
 require_once "MySQLiDB.php";
 
 // Create a new MySQLiDB instance
@@ -78,60 +78,85 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             margin: 0;
         }
 
-        .container {
-            max-width: 500px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #ffffff;
+        .container{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            background: white;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            box-shadow: 10px 10px 15px rgba(0,0,0,0.05);
         }
-
-        .form-control {
-            margin-bottom: 10px;
-            border: none;
-            border-radius: 3px;
-            background-color: #f2f2f2;
-            padding: 10px;
-            width: 100%;
+        .container h1{
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 1px solid silver;
+        }
+        .container form{
+            padding: 0 40px;
             box-sizing: border-box;
-            font-size: 16px;
         }
 
-        .form-control:focus {
+        form .form-group{
+            position: relative;
+            border-bottom: 2px solid #adadad;
+            margin: 30px 0;
+        }
+        .form-group input{
+            width: 100%;
+            padding: 0 5px;
+            height: 40px;
+            font-size: 16px;
+            border: none;
+            background: none;
             outline: none;
-            box-shadow: 0 0 5px rgba(0,0,0,0.2);
-            background-color: #ffffff;
         }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-
-        .form-group:last-child {
-            margin-bottom: 0;
-        }
-
-        .submit-btn {
-            background-color: #4CAF50;
-            color: #ffffff;
-            border: none;
-            border-radius: 3px;
-            padding: 10px;
+        .form-group label{
+            position: absolute;
+            top: 50%;
+            left: 5px;
+            color: #adadad;
+            transform: translateY(-50%);
             font-size: 16px;
-            cursor: pointer;
+            pointer-events: none;
+            transition: .5s;
+        }
+        .form-group span::before{
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: #2691d9;
+            transition: .5s;
+        }
+        .form-group input:focus ~ label,
+        .form-group input:valid ~ label{
+            top: -5px;
+            color: #2691d9;
+        }
+        .form-group input:focus ~ span::before,
+        .form-group input:valid ~ span::before{
             width: 100%;
-            box-sizing: border-box;
         }
 
-        .submit-btn:hover {
-            background-color: #3e8e41;
+        .submit-btn{
+            width: 100%;
+            height: 50px;
+            border: 1px solid;
+            background: #683E8C;
+            border-radius: 25px;
+            font-size: 18px;
+            color: #e9f4fb;
+            font-weight: 700;
+            cursor: pointer;
+            outline: none;
+        }
+        .submit-btn:hover{
+            border-color: #2691d9;
+            transition: .5s;
         }
         .user {
             position: relative; 
@@ -197,11 +222,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </style>
 </head>
 <body>
-
-    <?php
-	require_once("header.php");
-	?>
-
     <div class="container">
         <h1>Registration Form</h1>
         <?php if (isset($error)): ?>
@@ -209,20 +229,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <?php endif; ?>
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
             <div class="form-group">
-                <label for="name">Username:</label>
                 <input type="text" name="name" id="name" class="form-control" required>
+                <span></span>
+                <label for="name">Username:</label>
             </div>
             <div class="form-group">
-                <label for="email">Email:</label>
                 <input type="email" name="email" id="email" class="form-control" required>
+                <span></span>
+                <label for="email">Email:</label>
             </div>
             <div class="form-group">
-                <label for="password">Password:</label>
                 <input type="password" name="password" id="password" class="form-control" required>
+                <span></span>
+                <label for="password">Password:</label>
             </div>
             <div class="form-group">
-                <label for="confirm_password">Confirm Password:</label>
                 <input type="password" name="confirm_password" id="confirm_password" class="form-control" required>
+                <span></span>
+                <label for="confirm_password">Confirm Password:</label>
             </div>
             <input type="submit" value="Register" class="submit-btn">
         </form>

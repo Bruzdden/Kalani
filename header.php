@@ -1,7 +1,6 @@
 <nav class="navbar">
-		<img class="halo" src="logo.svg" alt="Logo">
+        <a href="index.php"><img class="halo" src="logo.svg" alt="Logo"></a>
 		<ul>
-			<li><a href="index.php">Home</a></li>
 			<li><a href="login.php">Calendar</a></li>
 			<li><a href="login.php">List</a></li>
 			<li><a href="#">Contact</a></li>
@@ -13,12 +12,13 @@
 				<button type="submit">Search</button>
 			</form>
 		</div>
+        <div class="puser">
 		<?php
 			
 
 			if (isset($_SESSION['idUser'])){
 				echo '<div class="user">
-					<button class="userbtn" id="button"><img  class="pfp" src="profile.png" width="20px" height="20px"></button>
+					<button class="userbtn" id="button"><img  class="pfp" src="profile.png"></button>
 					<ul class="userlist" id="list">
 					<li class="listitem">
 					<div class="logout">
@@ -35,13 +35,13 @@
 					</li>
 					<li class="listitem">
 						<div class="register">
-							<button onclick="window.location.href=\'register.php\'">Registerr</button>
+							<button onclick="window.location.href=\'register.php\'">Register</button>
 						</div>
 					</li>
 				</ul></div>';}
 		
 		?>
-		
+		</div>
 		
 		
 	</nav>
@@ -104,17 +104,23 @@
 }
 .user {
     position: relative; 
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 10px;
 }
  
 .userbtn {
+    top: 20px;
+    right: 20px;
     border: none;
     background-color: transparent;
     cursor: pointer;
 }
 
 .pfp {
-    width:20px !important;
-    height:20px !important;
+    width:35px !important;
+    height:35px !important;
 }
   
 

@@ -94,7 +94,7 @@
 		</div>
 		<div class="col-sm-6">
 			<h3>Follow Us</h3>
-			<p><a href="https://twitter.com/MaxmilianDao">Twitter</a></p>
+			
 			<p><a href="#">Instagram</a></p>
 		</div>
 		</div>

@@ -4,7 +4,6 @@ session_start();
 require __DIR__ . '/vendor/autoload.php';
 require_once "IDB.php";
 require_once "MySQLiDB.php";
-
 // Create a new MySQLiDB instance
 $db = new MySQLiDB();
 

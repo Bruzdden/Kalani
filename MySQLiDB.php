@@ -18,7 +18,7 @@ class MySQLiDB implements IDB {
         $this->dbuser = "root";
         $this->dbpass = "root";
         $this->dbname = "kalani";
-        $this->dbport = "3306";
+        $this->dbport = "11936";
     }
     // Connect to database
     public function _connect() {

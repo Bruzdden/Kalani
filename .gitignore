@@ -1,4 +1,8 @@
+/.idea/*
 /phpmyadmin/*
 /vendor/*
 /composer.json
 /composer.lock
+/graphql2.php
+/test.php
+/.gitattributes

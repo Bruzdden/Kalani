@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="style.css">
 	<link rel="stylesheet" href="calendar.css">
+	<link rel="stylsheet" type="text/css" href="/vendor/benhall14/php-calendar/html/css/calendar.min.css">
 	<link rel="icon" type="image/x-icon" href="favicon.ico">
 	<title>Kalani</title>
 </head>
@@ -15,6 +16,7 @@
 	<?php
 	session_start();
 	require_once("header.php");
+
 	?>
 
 	<section class="section">
@@ -76,11 +78,11 @@
 
 		<div class="section">
 			<?php
-			include 'calendar.php';
-
-			$calendar = new Calendar();
-
-			echo $calendar->show();
+			require __DIR__ . '/vendor/autoload.php';
+			use benhall14\phpCalendar\Calendar as Calendar;
+			$calendar = new Calendar;
+			$calendar->stylesheet();
+			(new Calendar)->display();
 			?>
 		</div>
 	</section>

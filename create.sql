@@ -26,7 +26,8 @@ CREATE TABLE `user` (
   `name` varchar(45) CHARACTER SET utf8 COLLATE utf8_czech_ci NOT NULL,
   `password` varchar(64) CHARACTER SET utf8 COLLATE utf8_czech_ci NOT NULL,
   `email` varchar(45) CHARACTER SET utf8 COLLATE utf8_czech_ci NOT NULL,
-  `rank` varchar(4) CHARACTER SET utf8 COLLATE utf8_czech_ci DEFAULT NULL
+  `rank` varchar(4) CHARACTER SET utf8 COLLATE utf8_czech_ci DEFAULT NULL,
+  `code` varchar(45) CHARACTER SET utf8 COLLATE utf8_czech_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --

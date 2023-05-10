@@ -92,11 +92,10 @@
 		<div class="col-sm-6">
 			<h3>Contact Us</h3>
 			<p>Email: l.divoch@seznam.cz</p>
-			<p>Phone: ne</p>
+			<p>Phone: +420 776 394 802</p>
 		</div>
 		<div class="col-sm-6">
 			<h3>Follow Us</h3>
-			
 			<p><a href="#">Instagram</a></p>
 		</div>
 		</div>

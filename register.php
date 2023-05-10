@@ -1,5 +1,12 @@
 <?php
+require __DIR__ . '/vendor/autoload.php';
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
 
+require 'vendor\phpmailer\phpmailer\src\Exception.php';
+require 'vendor\phpmailer\phpmailer\src\PHPMailer.php';
+require 'vendor\phpmailer\phpmailer\src\SMTP.php';
 //It needs mysqlidb class so this will include it
 require_once "MySQLiDB.php";
 
@@ -28,6 +35,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Error: Invalid email format";
         exit();
     }
+    // Generate a random verification code
+    $verificationCode = rand(100000, 999999);
+
+
+    // Send the verification email
+    $mail = new PHPMailer;
+    //$mail->isSMTP();
+    //$mail->Host = 'lex.divoch@gmail.com';
+    //$mail->Port = 465;
+    //$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+    //$mail->SMTPAuth = true;
+    $mail->isSendmail();
+    $mail->setFrom('lex.divoch@gmail.com', 'kalani');
+    $mail->addReplyTo('lex.divoch@gmail.com', 'Kalani');
+    $mail->addAddress($email);
+    $mail->Subject = 'Email Verification';
+    $mail->Body = 'Please enter the following verification code in order to verify your email address: ' . $verificationCode;
+    if (!$mail->send()) {
+        echo 'There was an error sending the verification email: ' . $mail->ErrorInfo;
+    }else{
+        echo 'Email sent';
+    }
 
     // Check if username or email already exists
     $existing_user = $db->_select("user", array(), array("name" => $username));
@@ -46,7 +75,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user_data = array(
         "name" => $username,
         "email" => $email,
-        "password" => $hashed_password
+        "password" => $hashed_password,
+        "code" => $verificationCode
     );
     $insert = $db->_insert("user", $user_data);
 
@@ -59,7 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Redirect the user to the login page
-    header("Location: login.php");
+    header("Location: verification.php");
     exit();
 }
 
@@ -67,7 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <title>Registration Form</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -127,7 +157,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             position: absolute;
             top: 40px;
             left: 0;
-            width: 0%;
+            width: 0;
             height: 2px;
             background: #2691d9;
             transition: .5s;
@@ -158,44 +188,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             border-color: #2691d9;
             transition: .5s;
         }
-        .user {
-            position: relative; 
-        }
-        
-        .userbtn {
-            border: none;
-            background-color: transparent;
-            cursor: pointer;
-        }
 
         .userbtn img {
             width: 50px;
             height: 50px;
         }
-        
 
-        .userlist {
-            display: none; 
-            position: absolute;
-            top: 100%;
-            right: 0;
-            z-index: 1; 
-            padding: 0;
-            margin: 0;
-            list-style: none;
-            background-color: #fff;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-        }
-        
-
-        .listitem {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 10px;
-        }
         
         .login button,
         .register button {

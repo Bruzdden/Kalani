@@ -1,11 +1,13 @@
 <nav class="navbar">
-        <a href="index.php"><img class="halo" src="logo.svg" alt="Logo"></a>
-		<ul>
-			<li><a href="login.php">Calendar</a></li>
-			<li><a href="login.php">List</a></li>
-			<li><a href="#">Contact</a></li>
-		</ul>
-
+       <div class="navbar_left">
+		   <a href="index.php"><img class="halo" src="logo.svg" alt="Logo"></a>
+		   <ul>
+			   <li><a href="login.php">Calendar</a></li>
+			   <li><a href="login.php">List</a></li>
+			   <li><a href="#">Contact</a></li>
+		   </ul>
+	   </div>
+		<div class="navbar_right">
 		<div class="searchbar">
 			<form action="graphql.php" method="POST">
 				<input type="text" name="search" placeholder="Search...">
@@ -14,8 +16,6 @@
 		</div>
         <div class="puser">
 		<?php
-			
-
 			if (isset($_SESSION['idUser'])){
 				echo '<div class="user">
 					<button class="userbtn" id="button"><img  class="pfp" src="profile.png"></button>
@@ -39,13 +39,10 @@
 						</div>
 					</li>
 				</ul></div>';}
-		
 		?>
 		</div>
-		
-		
+		</div>
 	</nav>
-
     <style>
 
 .navbar {
@@ -54,11 +51,21 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+	align-items: center;
     padding: 10px;
 }
 
 .navbar img {
     height: 50px;
+}
+
+.navbar_left ul, .navbar_right .searchbar{
+	padding: 0 20px 0 20px;
+}
+
+.navbar_left, .navbar_right{
+	display: flex;
+	justify-content: center;
 }
 
 .navbar ul {
@@ -77,10 +84,10 @@
     text-decoration: none;
     transition: color 0.3s;
 }
-
 .navbar li a:hover {
     color: #ffd700;
 }
+
 .searchbar {
     display: flex;
     align-items: center;
@@ -122,7 +129,6 @@
     width:35px !important;
     height:35px !important;
 }
-  
 
 .userlist {
     display: none; 
@@ -189,4 +195,4 @@
 .register button:hover{
     background-color: #FFD25A;
 }
-    </style>
+	</style>

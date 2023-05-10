@@ -52,7 +52,7 @@ if (isset($_SESSION["name"])) {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
@@ -111,7 +111,7 @@ if (isset($_SESSION["name"])) {
             position: absolute;
             top: 40px;
             left: 0;
-            width: 0%;
+            width: 0;
             height: 2px;
             background: #2691d9;
             transition: .5s;

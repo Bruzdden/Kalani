@@ -1,7 +1,5 @@
 <?php
-
 session_start();
-
 require_once "MySQLiDB.php";
 
 // Create a new MySQLiDB instance
@@ -9,7 +7,6 @@ $db = new MySQLiDB();
 
 // Connect to the database
 $db->_connect();
-
 
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $code = $_POST["code"];
@@ -21,9 +18,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         else{
             echo 'This is not the code';
         }
-
-
-
 }
 
 ?>

@@ -1,6 +1,6 @@
 <?php
 require __DIR__ . '/vendor/autoload.php';
-
+use PHPMailer\PHPMailer\PHPMailer;
 //It needs mysqlidb class so this will include it
 require_once "MySQLiDB.php";
 

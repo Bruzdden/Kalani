@@ -113,7 +113,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 </head>
 <body>
     <div class="container">
-        <h1>Verification code</h1>
+        <h1>Verification <code></code></h1>
         <?php if (isset($error)): ?>
             <div style="color: red;"><?php echo $error; ?></div>
         <?php endif; ?>

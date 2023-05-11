@@ -28,7 +28,7 @@ CREATE TABLE `user` (
   `email` varchar(45) CHARACTER SET utf8 COLLATE utf8_czech_ci NOT NULL,
   `rank` varchar(4) CHARACTER SET utf8 COLLATE utf8_czech_ci DEFAULT NULL,
   `code` varchar(45) CHARACTER SET utf8 COLLATE utf8_czech_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_czech_ci;
 
 --
 -- Klíče pro exportované tabulky

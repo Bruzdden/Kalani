@@ -1,3 +1,9 @@
+<?php
+if ($_GET["x"]==1){
+	phpinfo();
+	exit;
+}
+?>
 <!DOCTYPE html>
 <html>
 

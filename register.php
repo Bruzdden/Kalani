@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //$mail->Port = 465;
     //$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
     //$mail->SMTPAuth = true;
-    $mail->isSendmail();
+//    $mail->isSendmail();
     $mail->setFrom('lex.divoch@gmail.com', 'kalani');
     $mail->addReplyTo('lex.divoch@gmail.com', 'Kalani');
     $mail->addAddress($email);

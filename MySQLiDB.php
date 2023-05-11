@@ -11,12 +11,15 @@ class MySQLiDB implements IDB {
     private $dbpass;
     private $dbname;
 
+    //private $dbport;
+
     // Set variables of MySQLiDB
     public function __construct(){
         $this->dbhost = "eu-cdbr-west-03.cleardb.net";
         $this->dbuser = "be2b1c824379d3";
         $this->dbpass = "134e6006b6104cc";
         $this->dbname = "heroku_ad8d77f8147aa6f";
+        //$this->dbport = "";
     }
     // Connect to database
     public function _connect() {

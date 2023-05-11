@@ -10,7 +10,6 @@ class MySQLiDB implements IDB {
     private $dbuser;
     private $dbpass;
     private $dbname;
-    private $dbport;
 
     // Set variables of MySQLiDB
     public function __construct(){
@@ -18,11 +17,10 @@ class MySQLiDB implements IDB {
         $this->dbuser = "be2b1c824379d3";
         $this->dbpass = "134e6006b6104cc";
         $this->dbname = "heroku_ad8d77f8147aa6f";
-        $this->dbport = "";
     }
     // Connect to database
     public function _connect() {
-        $this->db = new mysqli($this->dbhost, $this->dbuser, $this->dbpass, $this->dbname, $this->dbport);
+        $this->db = new mysqli($this->dbhost, $this->dbuser, $this->dbpass, $this->dbname);
         return null;
     }
     // Select what u want from database

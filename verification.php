@@ -12,12 +12,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $code = $_POST["code"];
     $select = $db->_select('user', [], ['code' => $code]);
     if (count($select) == 1){
+        $result = $db->_update('user', 'idUser', $idUser, ['rank' => 0]);
+        if ($result) {
+            echo "User rank updated successfully";
             header("Location: login.php");
             exit();
+        } 
+        else {
+            $error = $db->getLastError();
+            echo "Error updating user: " . print_r($error, true);
+        }  
         }
-        else{
-            echo 'This is not the code';
-        }
+    else{
+        echo 'This is not the code';
+    }
 }
 
 ?>

@@ -81,9 +81,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Error: " . $error_info[2];
         exit();
     }
-
-    // Redirect the user to the login page
-    header("Location: verification.php");
+    // Redirect the user to the login/verification page
+    //header("Location: verification.php");
+    header("Location: login.php");
     exit();
 }
 

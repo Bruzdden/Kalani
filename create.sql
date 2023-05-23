@@ -26,6 +26,7 @@ CREATE TABLE `user` (
   `name` varchar(45) CHARACTER SET utf8 COLLATE utf8_czech_ci NOT NULL,
   `password` varchar(64) CHARACTER SET utf8 COLLATE utf8_czech_ci NOT NULL,
   `email` varchar(45) CHARACTER SET utf8 COLLATE utf8_czech_ci NOT NULL,
+  `joinDate` DATETIME DEFAULT CURRENT_TIMESTAMP, 
   `rank` varchar(4) CHARACTER SET utf8 COLLATE utf8_czech_ci DEFAULT NULL,
   `code` varchar(45) CHARACTER SET utf8 COLLATE utf8_czech_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_czech_ci;
@@ -56,7 +57,10 @@ ALTER TABLE `user`
 CREATE TABLE `anime` (
   `idUser` INT,
   `idAnime` INT,
-  `currentDate` DATETIME DEFAULT CURRENT_TIMESTAMP, 
+  `currentDate` DATETIME DEFAULT CURRENT_TIMESTAMP,
+  `releaseDate` DATETIME,
+  `latestEpisode` INT,
+  `airingDate` DATETIME,
   PRIMARY KEY (`idUser`, `idAnime`),
   FOREIGN KEY (`idUser`) REFERENCES `user`(`idUser`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_czech_ci;

@@ -9,7 +9,7 @@
 	   </div>
 		<div class="navbar_right">
 		<div class="searchbar">
-			<form action="graphql.php" method="POST">
+			<form action="graphqlShow.php" method="POST">
 				<input type="text" name="search" placeholder="Search...">
 				<button type="submit">Search</button>
 			</form>

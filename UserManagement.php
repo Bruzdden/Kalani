@@ -42,7 +42,7 @@ if (isset($_POST['delete_user'])) {
 // Check if the derank admin form has been submitted
 } else if (isset($_POST['derank_user'])) {
     $idUser = $_POST['user_id'];
-    $result = $db->_update('user', 'idUser', $idUser, ['rank' => null]);
+    $result = $db->_update('user', 'idUser', $idUser, ['rank' => 0]);
     if ($result) {
         echo "User rank updated successfully";
     } else {

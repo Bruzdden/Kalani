@@ -15,11 +15,17 @@ class MySQLiDB implements IDB {
 
     // Set variables of MySQLiDB
     public function __construct(){
+        /*
         $this->dbhost = "eu-cdbr-west-03.cleardb.net";
         $this->dbuser = "be2b1c824379d3";
         $this->dbpass = "134e6006b6104cc";
         $this->dbname = "heroku_ad8d77f8147aa6f";
         //$this->dbport = "";
+        */
+        $this->dbhost = "127.0.0.1";
+        $this->dbuser = "root";
+        $this->dbpass = "root";
+        $this->dbname = "kalani";
     }
     // Connect to database
     public function _connect() {
@@ -77,6 +83,10 @@ class MySQLiDB implements IDB {
         $stmt = mysqli_prepare($this->db, $sql);
         mysqli_stmt_bind_param($stmt, str_repeat('i', count($ids)), ...$ids);
         return mysqli_stmt_execute($stmt);
+    }
+    public function _delete_user_after_time(string $table): bool {
+        $sql = "DELETE FROM $table WHERE joinDate <= DATE_SUB(CURRENT_DATE(), INTERVAL 3 MINUTE) AND 'rank' IS NULL";
+        return mysqli_query($this->db, $sql);
     }
     // Return error message
     public function getLastError(): array {

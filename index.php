@@ -1,8 +1,22 @@
 <?php
-if ($_GET["x"]==1){
-	phpinfo();
-	exit;
+session_start();
+
+require_once "MySQLiDB.php";
+// Create a new MySQLiDB instance
+$db = new MySQLiDB();
+
+// Connect to the database
+$db->_connect();
+
+$select = $db->_select('user', array(), array());
+    if (count($select) == 1){
+	$delete = $db->_delete_user_after_time('user');
+	if (!$delete) {
+		$error = $db->getLastError();
+		echo "Error deleting user: " . print_r($error, true);
+	}
 }
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -20,13 +34,18 @@ if ($_GET["x"]==1){
 <body>
 
 	<?php
-	session_start();
 	require_once("header.php");
+
+	?>
+	<img src="kalani.png" alt="kalani" width="100%" height="500px">
+
+	<?php
+	//require_once("graphql.php");
 
 	?>
 
 	<section class="section">
-		<h2>New</h2>
+		<h2>5 New Anime</h2>
 
 		<div class="item">
 			<img src="item1.jpg" alt="Item 1">
@@ -83,12 +102,33 @@ if ($_GET["x"]==1){
 		</div>
 
 		<div class="section">
+			<form method="post"><input type="hidden" name="next" value="next"><button type="submit" name="next">next</button></form>
 			<?php
 			require __DIR__ . '/vendor/autoload.php';
 			use benhall14\phpCalendar\Calendar as Calendar;
+			
 			$calendar = new Calendar;
 			$calendar->stylesheet();
-			(new Calendar)->display();
+
+			$select = $db->_select('anime', [], ['idUser' => $_SESSION['idUser']]);
+			foreach ($select as $anime) {
+				$airingDate = date("Y-m-d", strtotime($anime["airingDate"]));
+				$idAnime = (string)$anime["idAnime"];
+				$sumary = ($idAnime . "</br>" . $airingDate . "</br>");
+				$events[] = array(
+					'start' =>  $airingDate,
+					'end' =>  $airingDate,
+					'mask' => true,
+					'summary' => $sumary,
+				);
+				
+			}
+			$calendar->addEvents($events);
+			$calendar->display();
+			
+			
+		
+			
 			?>
 		</div>
 	</section>

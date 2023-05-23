@@ -2,7 +2,7 @@
        <div class="navbar_left">
 		   <a href="index.php"><img class="halo" src="logo.svg" alt="Logo"></a>
 		   <ul>
-			   <li><a href="login.php">Calendar</a></li>
+			   <li><a href="calendar.php">Calendar</a></li>
 			   <li><a href="login.php">List</a></li>
 			   <li><a href="#">Contact</a></li>
 		   </ul>

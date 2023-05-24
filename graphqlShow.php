@@ -1,6 +1,7 @@
 <?php
 
 require_once("graphql.php");
+require_once("header.php");
 
 $searchInput = $_POST['search'];
 

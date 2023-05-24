@@ -1,14 +1,7 @@
 <?php
 session_start();
 
-// Check if the user is logged in and has rank 1
-if (!isset($_SESSION['name']) || $_SESSION['rank'] != 1) {
-    header('Location: login.php');
-    exit();
-}
-
-//It needs mysqlidb class so this will include it
-require_once 'mysqlidb.php';
+require_once 'mySQLiDB.php';
 
 
 
@@ -17,6 +10,19 @@ $db = new MySQLiDB();
 
 // Connect to the database
 $db->_connect();
+
+// Check if the user is logged in and has rank 1
+$users = $db->_select('user',[], []);
+foreach ($users as $user){
+  if (!isset($_SESSION['name']) || $user['rank'] != 1) {
+    header('Location: login.php');
+    exit();
+}
+}
+
+
+//It needs mysqlidb class so this will include it
+
 
 
 // Check if the delete form has been submitted
@@ -52,7 +58,7 @@ if (isset($_POST['delete_user'])) {
 }
 
 // Select the names of users from the "user" table
-$users = $db->_select('user', ['idUser', 'name', 'rank']);
+$users = $db->_select('user',['idUser', 'name', 'rank'], []);
 
 // Generate an HTML table with the user names and delete/make admin buttons
 echo '<table class="user-table">';
@@ -65,10 +71,10 @@ foreach ($users as $user) {
     echo '<form method="post" action="' . htmlspecialchars($_SERVER["PHP_SELF"]) . '">';
     echo '<input type="hidden" name="user_id" value="' . $user['idUser'] . '">';
     echo '<button class="delete-button" name="delete_user">Delete</button>';
-    if (empty($user['rank'])) {
+    if ($user['rank'] == 0) {
         echo '<button class="make-admin-button" name="make_admin">Make Admin</button>';
     }
-    if (!empty($user['rank'])) {
+    if ($user['rank'] == 1) {
         echo '<button class="derank-button" name="derank_user">Derank</button>';
     }
     echo '</form>';

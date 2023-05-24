@@ -2,6 +2,7 @@
 
 // Requiring IDB Interface
 require_once "IDB.php";
+require_once "secure.php";
 
 // Implement IDB Interface
 class MySQLiDB implements IDB {
@@ -16,10 +17,10 @@ class MySQLiDB implements IDB {
     // Set variables of MySQLiDB
     public function __construct(){
         /*
-        $this->dbhost = "eu-cdbr-west-03.cleardb.net";
-        $this->dbuser = "be2b1c824379d3";
-        $this->dbpass = "134e6006b6104cc";
-        $this->dbname = "heroku_ad8d77f8147aa6f";
+        $this->dbhost = $dbHost;
+        $this->dbuser = $dbUser;
+        $this->dbpass = $dbPass;
+        $this->dbname = $dbName;
         //$this->dbport = "";
         */
         $this->dbhost = "127.0.0.1";
@@ -85,7 +86,7 @@ class MySQLiDB implements IDB {
         return mysqli_stmt_execute($stmt);
     }
     public function _delete_user_after_time(string $table): bool {
-        $sql = "DELETE FROM $table WHERE joinDate <= DATE_SUB(CURRENT_DATE(), INTERVAL 3 MINUTE) AND 'rank' IS NULL";
+        $sql = "DELETE FROM $table WHERE joinDate <= DATE_SUB(CURRENT_DATE(), INTERVAL 3 MINUTE)";
         return mysqli_query($this->db, $sql);
     }
     // Return error message

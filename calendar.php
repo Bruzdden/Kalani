@@ -1,8 +1,9 @@
 <?php
-session_start();
-
+require_once("graphql.php");
 require_once "MySQLiDB.php";
 require __DIR__ . '/vendor/autoload.php';
+
+$animeSearch = new AnimeSearch;
 
 if (!isset($_SESSION["name"])) {
     header("Location: login.php");
@@ -41,20 +42,40 @@ $calendar->stylesheet();
 	?>
     <?php
 
-    $select = $db->_select('anime', [], ['idUser' => $_SESSION['idUser']]);
-    foreach ($select as $anime) {
-        $airingDate = date("Y-m-d", strtotime($anime["airingDate"]));
-        $idAnime = (string)$anime["idAnime"];
-        $sumary = ($idAnime . "</br>" . $airingDate . "</br>");
-        $events[] = array(
-            'start' =>  $airingDate,
-            'end' =>  $airingDate,
-            'mask' => true,
-            'summary' => $sumary,
-        );
-                    
+    if (isset($_SESSION["name"])) {
+        $select = $db->_select('anime', [], ['idUser' => $_SESSION['idUser']]);
+
+        $response = $animeSearch->getClient()->post('https://graphql.anilist.co', [
+            'json' => [
+                'query' => $animeSearch->getQuery(),
+            ],
+        ]);
+        $data = json_decode($response->getBody(), true);
+        
+        $animeMap = [];
+        foreach ($data['data']['Page']['media'] as $anime) {
+            $animeMap[$anime['id']] = $anime['title']['english'];
+        }
+        
+        $events = [];
+        foreach ($select as $anime) {
+            $airingDate = date("Y-m-d", strtotime($anime["airingDate"]));
+            $idAnime = (string)$anime["idAnime"];
+            
+            if (isset($animeMap[$idAnime])) {
+                $animeTitle = $animeMap[$idAnime];
+                $sumary = $animeTitle . "</br>" . $airingDate . "</br>";
+                $events[] = [
+                    'start' => $airingDate,
+                    'end' => $airingDate,
+                    'mask' => true,
+                    'summary' => $sumary,
+                ];
+            }
+        }
+        $calendar->addEvents($events);
     }
-    $calendar->addEvents($events);
+
     $calendar->display();
     ?>
 </body>

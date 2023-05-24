@@ -1,6 +1,5 @@
 <?php
-session_start();
-
+require_once("graphql.php");
 require_once "MySQLiDB.php";
 // Create a new MySQLiDB instance
 $db = new MySQLiDB();
@@ -8,14 +7,20 @@ $db = new MySQLiDB();
 // Connect to the database
 $db->_connect();
 
-$select = $db->_select('user', array(), array());
-    if (count($select) == 1){
-	$delete = $db->_delete_user_after_time('user');
-	if (!$delete) {
-		$error = $db->getLastError();
-		echo "Error deleting user: " . print_r($error, true);
+if (isset($_SESSION["name"])){
+	$select = $db->_select('user', [], []);
+
+	foreach ($select as $user) {
+		if (empty($user["rank"]) && $user["joinDate"] <= date('Y-m-d H:i:s', strtotime('-3 minutes'))) {
+			$delete = $db->_delete('user', $user["idUser"], $_SESSION["idUser"]);
+			if (!$delete) {
+				$error = $db->getLastError();
+				echo "Error deleting user: " . print_r($error, true);
+			}
+		}
 	}
 }
+
 
 ?>
 <!DOCTYPE html>
@@ -37,100 +42,165 @@ $select = $db->_select('user', array(), array());
 	require_once("header.php");
 
 	?>
-	<img src="kalani.png" alt="kalani" width="100%" height="500px">
+	<div class="image-container">
+		<img src="kalani.png" alt="kalani">
+	</div>
+	
 
 	<?php
 	//require_once("graphql.php");
+	$animeSearch = new AnimeSearch;
+
+    $queryNew = <<<'QUERY'
+            query ($search: String) {
+                Page {
+                    media (search: $search, type: ANIME, sort: START_DATE_DESC, status: RELEASING) {
+                        id
+                        title {
+                            english
+                            romaji
+                        }
+                        coverImage {
+                            medium
+                        }
+                        startDate {
+                            year
+                            month
+                            day
+                        }
+                        airingSchedule(notYetAired: true, perPage: 1) {
+                            nodes {
+                                episode
+                                airingAt
+                            }
+                        }
+                    }
+                }
+            }
+            QUERY;    
+	$queryPopular = <<<'QUERY'
+			query ($search: String) {
+				Page {
+					media (search: $search, type: ANIME, sort: POPULARITY_DESC, status: RELEASING) {
+						id
+						title {
+							english
+							romaji
+						}
+						coverImage {
+							medium
+						}
+						startDate {
+							year
+							month
+							day
+						}
+						airingSchedule(notYetAired: true, perPage: 1) {
+							nodes {
+								episode
+								airingAt
+							}
+						}
+					}
+				}
+			}
+			QUERY;
+
+		$dataNew = $animeSearch->fetchData($queryNew);
+		$dataPopular = $animeSearch->fetchData($queryPopular);
+			
+		$animeListNew = array_slice($dataNew, 0, 5);
+		$animeListPopular = array_slice($dataPopular, 0, 5);
+			
+		$htmlContainerNew = $animeSearch->generateAnimeContainer($animeListNew, '5 Newest Anime');
+		$htmlContainerPopular = $animeSearch->generateAnimeContainer($animeListPopular, '5 Popular Anime');
+			
+		echo $htmlContainerNew;
+		echo $htmlContainerPopular;
 
 	?>
 
 	<section class="section">
-		<h2>5 New Anime</h2>
-
-		<div class="item">
-			<img src="item1.jpg" alt="Item 1">
-			<h3>Item 1</h3>
-		</div>
-
-		<div class="item">
-			<img src="item2.jpg" alt="Item 2">
-			<h3>Item 2</h3>
-		</div>
-
-		<div class="item">
-			<img src="item3.jpg" alt="Item 3">
-			<h3>Item 3</h3>
-		</div>
-
-		<div class="item">
-			<img src="item4.jpg" alt="Item 4">
-			<h3>Item 4</h3>
-		</div>
-
-		<div class="item">
-			<img src="item5.jpg" alt="Item 5">
-			<h3>Item 5</h3>
-		</div>
-	</section>
-
-	<section class="section">
-		<h2>Popular</h2>
-
-		<div class="item">
-			<img src="item6.jpg" alt="Item 6">
-			<h3>Item 6</h3>
-		</div>
-
-		<div class="item">
-			<img src="item7.jpg" alt="Item 7">
-			<h3>Item 7</h3>
-		</div>
-
-		<div class="item">
-			<img src="item8.jpg" alt="Item 8">
-			<h3>Item 8</h3>
-		</div>
-
-		<div class="item">
-			<img src="item9.jpg" alt="Item 9">
-			<h3>Item 9</h3>
-		</div>
-			<div class="item">
-				<img src="item10.jpg" alt="Item 10">
-				<h3>Item 10</h3>
-			</div>
-		</div>
-
+		<a href="calendar.php" class="a-calendar">
 		<div class="section">
-			<form method="post"><input type="hidden" name="next" value="next"><button type="submit" name="next">next</button></form>
 			<?php
 			require __DIR__ . '/vendor/autoload.php';
+			
 			use benhall14\phpCalendar\Calendar as Calendar;
 			
 			$calendar = new Calendar;
 			$calendar->stylesheet();
+			
 
-			$select = $db->_select('anime', [], ['idUser' => $_SESSION['idUser']]);
-			foreach ($select as $anime) {
-				$airingDate = date("Y-m-d", strtotime($anime["airingDate"]));
-				$idAnime = (string)$anime["idAnime"];
-				$sumary = ($idAnime . "</br>" . $airingDate . "</br>");
-				$events[] = array(
-					'start' =>  $airingDate,
-					'end' =>  $airingDate,
-					'mask' => true,
-					'summary' => $sumary,
-				);
+			
+
+			
+			if (isset($_SESSION["name"])) {
+				$queryCalendar = <<<'QUERY'
+				query ($search: String) {
+					Page {
+						media (search: $search, type: ANIME, sort: FAVOURITES_DESC, status: RELEASING) {
+							id
+							title {
+								english
+								romaji
+							}
+							coverImage {
+								medium
+							}
+							startDate {
+								year
+								month
+								day
+							}
+							airingSchedule(notYetAired: true, perPage: 1) {
+								nodes {
+									episode
+									airingAt
+								}
+							}
+						}
+					}
+				}
+				QUERY;
+
+				$dataCalendar = $animeSearch->fetchData($queryCalendar);
+				$select = $db->_select('anime', [], ['idUser' => $_SESSION['idUser']]);
+
 				
+				$animeMap = [];
+				foreach ($dataCalendar as $anime) {
+					$animeMap[$anime['id']] = $anime['title']['english'];
+				}
+				
+				$events = [];
+				foreach ($select as $anime) {
+					$airingDate = date("Y-m-d", strtotime($anime["airingDate"]));
+					$idAnime = (string)$anime["idAnime"];
+					
+					if (isset($animeMap[$idAnime])) {
+						$animeTitle = $animeMap[$idAnime];
+						$sumary = $animeTitle . "</br>" . $airingDate . "</br>";
+						$events[] = [
+							'start' => $airingDate,
+							'end' => $airingDate,
+							'mask' => true,
+							'summary' => $sumary,
+						];
+					}
+				}
+				$calendar->addEvents($events);
 			}
-			$calendar->addEvents($events);
+
 			$calendar->display();
+
 			
 			
 		
 			
 			?>
 		</div>
+		</a>
 	</section>
 	<footer>
 	<div class="container">

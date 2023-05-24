@@ -49,7 +49,49 @@ class AnimeSearch
             }
             QUERY;
     }
+    public function getClient()
+    {
+        return $this->client;
+    }
+    public function getQuery()
+    {
+        return $this->query;
+    }
     
+    public function fetchData($query)
+    {
+        $client = new Client(['verify' => false]);
+        
+        $response = $client->post('https://graphql.anilist.co', [
+            'json' => [
+                'query' => $query,
+            ],
+        ]);
+        
+        $data = json_decode($response->getBody(), true);
+        
+        return $data['data']['Page']['media'];
+    }
+
+    public function generateAnimeContainer($animeList, $title)
+    {
+        $htmlContainer = '<div class="anime-container-new">';
+        $htmlContainer .= "<h2>$title</h2>";
+        
+        foreach ($animeList as $anime) {
+            $animeTitle = $anime['title']['english'];
+            $animeCoverImage = $anime['coverImage']['medium'];
+            
+            $htmlContainer .= '<div class="anime-item-new">';
+            $htmlContainer .= '<img src="' . $animeCoverImage . '" alt="' . $animeTitle . '">';
+            $htmlContainer .= '<h3>' . $animeTitle . '</h3>';
+            $htmlContainer .= '</div>';
+        }
+        
+        $htmlContainer .= '</div>';
+        
+        return $htmlContainer;
+    }
 
     public function search($searchInput)
     {
@@ -96,7 +138,7 @@ class AnimeSearch
                     $latestEpisode = $node['episode'];
                     $airingAt = $node['airingAt'];
                     $airingDate = date('Y-m-d H:i:s', $airingAt);
-                    break; // Retrieve the first valid episode and airing date
+                    break;
                 }
             }
         }

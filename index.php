@@ -112,7 +112,7 @@ if (isset($_SESSION["name"])){
 		$animeListNew = array_slice($dataNew, 0, 5);
 		$animeListPopular = array_slice($dataPopular, 0, 5);
 			
-		$htmlContainerNew = $animeSearch->generateAnimeContainer($animeListNew, '5 Newest Anime');
+		$htmlContainerNew = $animeSearch->generateAnimeContainer($animeListNew, '5 Latest Anime');
 		$htmlContainerPopular = $animeSearch->generateAnimeContainer($animeListPopular, '5 Popular Anime');
 			
 		echo $htmlContainerNew;

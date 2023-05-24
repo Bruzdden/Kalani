@@ -195,4 +195,10 @@
 .register button:hover{
     background-color: #FFD25A;
 }
+
+@media screen and (max-width: 767px) {
+        .searchbar input[type="text"] {
+            width: 150px;
+        }
+    }
 	</style>

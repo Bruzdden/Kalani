@@ -64,7 +64,7 @@ $calendar->stylesheet();
             
             if (isset($animeMap[$idAnime])) {
                 $animeTitle = $animeMap[$idAnime];
-                $sumary = $animeTitle . "</br>" . $airingDate . "</br>";
+                $sumary = "</br>" . $animeTitle . "</br>" . $airingDate . "</br>";
                 $events[] = [
                     'start' => $airingDate,
                     'end' => $airingDate,

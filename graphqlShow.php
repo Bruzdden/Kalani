@@ -53,3 +53,6 @@ echo $html;
         }
     }
 </style>
+<body>
+    <script src="script.js"></script>
+</body>

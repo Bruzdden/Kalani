@@ -78,4 +78,5 @@ $calendar->stylesheet();
 
     $calendar->display();
     ?>
+    <script src="script.js"></script>
 </body>

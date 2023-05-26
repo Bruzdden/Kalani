@@ -14,16 +14,14 @@ $db->_connect();
 // Check if the user is logged in and has rank 1
 $users = $db->_select('user',[], []);
 foreach ($users as $user){
-  if (!isset($_SESSION['name']) || $user['rank'] != 1) {
+  if (!isset($_SESSION['name']) || $user['rank'] != 2) {
     header('Location: login.php');
     exit();
 }
 }
 
 
-//It needs mysqlidb class so this will include it
-
-
+ 
 
 // Check if the delete form has been submitted
 if (isset($_POST['delete_user'])) {
@@ -38,7 +36,7 @@ if (isset($_POST['delete_user'])) {
 // Check if the make admin form has been submitted
 } else if (isset($_POST['make_admin'])) {
     $idUser = $_POST['user_id'];
-    $result = $db->_update('user', 'idUser', $idUser, ['rank' => 1]);
+    $result = $db->_update('user', 'idUser', $idUser, ['rank' => 2]);
     if ($result) {
         echo "User rank updated successfully";
     } else {
@@ -48,7 +46,7 @@ if (isset($_POST['delete_user'])) {
 // Check if the derank admin form has been submitted
 } else if (isset($_POST['derank_user'])) {
     $idUser = $_POST['user_id'];
-    $result = $db->_update('user', 'idUser', $idUser, ['rank' => 0]);
+    $result = $db->_update('user', 'idUser', $idUser, ['rank' => 1]);
     if ($result) {
         echo "User rank updated successfully";
     } else {
@@ -58,7 +56,7 @@ if (isset($_POST['delete_user'])) {
 }
 
 // Select the names of users from the "user" table
-$users = $db->_select('user',['idUser', 'name', 'rank'], []);
+$users = $db->_select('user',[], []);
 
 // Generate an HTML table with the user names and delete/make admin buttons
 echo '<table class="user-table">';
@@ -71,10 +69,10 @@ foreach ($users as $user) {
     echo '<form method="post" action="' . htmlspecialchars($_SERVER["PHP_SELF"]) . '">';
     echo '<input type="hidden" name="user_id" value="' . $user['idUser'] . '">';
     echo '<button class="delete-button" name="delete_user">Delete</button>';
-    if ($user['rank'] == 0) {
+    if ($user['rank'] == 1) {
         echo '<button class="make-admin-button" name="make_admin">Make Admin</button>';
     }
-    if ($user['rank'] == 1) {
+    if ($user['rank'] == 2) {
         echo '<button class="derank-button" name="derank_user">Derank</button>';
     }
     echo '</form>';

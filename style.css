@@ -9,7 +9,7 @@ body {
 }
 
 .section {
-    padding: 20px;
+    padding: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -97,19 +97,19 @@ footer {
 }
 
 .anime-container-new {
-    background-color: #f0c40065;
+    background-color: #FFDA76;
     margin-top: 50px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
-    padding-left: 5%;
-    padding-right: 5%;
+    justify-content: center;
+    padding: 20px;
 }
 
 .anime-container-new h2 {
     flex-basis: 100%;
     text-align: center;
     margin-bottom: 20px;
+    font-size: 24px;
 }
 
 .anime-item-new {
@@ -121,6 +121,8 @@ footer {
 .anime-item-new img {
     width: 100px;
     height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
 }
 
 .anime-item-new h3 {
@@ -132,5 +134,10 @@ footer {
     .anime-item-new img {
         width: 60px;
         height: 120px;
+    }
+
+    .item,
+    .anime-item-new {
+        flex-basis: 50%;
     }
 }

@@ -7,18 +7,20 @@ $db = new MySQLiDB();
 // Connect to the database
 $db->_connect();
 
-if (isset($_SESSION["name"])){
-	$select = $db->_select('user', [], []);
-
-	foreach ($select as $user) {
-		if (empty($user["rank"]) && $user["joinDate"] <= date('Y-m-d H:i:s', strtotime('-3 minutes'))) {
-			$delete = $db->_delete('user', $user["idUser"], $_SESSION["idUser"]);
-			if (!$delete) {
-				$error = $db->getLastError();
-				echo "Error deleting user: " . print_r($error, true);
-			}
-		}
-	}
+if (isset($_SESSION["idUser"])) {
+    $select = $db->_select('user', [], []);
+    if (count($select) == 1) {
+        if (empty($select[0]["rank"]) && strtotime($select[0]["joinDate"]) <= strtotime('-3 minutes')) {
+            $delete = $db->_delete('user', $select[0]["idUser"], $_SESSION["idUser"]);
+            if ($delete) {
+                header('Location: logout.php');
+                exit();
+            } else {
+                $error = $db->getLastError();
+                echo "Error deleting user: " . print_r($error, true);
+            }
+        }
+    }
 }
 
 
@@ -81,7 +83,7 @@ if (isset($_SESSION["name"])){
 	$queryPopular = <<<'QUERY'
 			query ($search: String) {
 				Page {
-					media (search: $search, type: ANIME, sort: POPULARITY_DESC, status: RELEASING) {
+					media (search: $search, type: ANIME, sort: TRENDING_DESC, status: RELEASING) {
 						id
 						title {
 							english
@@ -113,7 +115,7 @@ if (isset($_SESSION["name"])){
 		$animeListPopular = array_slice($dataPopular, 0, 5);
 			
 		$htmlContainerNew = $animeSearch->generateAnimeContainer($animeListNew, '5 Latest Anime');
-		$htmlContainerPopular = $animeSearch->generateAnimeContainer($animeListPopular, '5 Popular Anime');
+		$htmlContainerPopular = $animeSearch->generateAnimeContainer($animeListPopular, '5 Trending Anime');
 			
 		echo $htmlContainerNew;
 		echo $htmlContainerPopular;
@@ -121,8 +123,9 @@ if (isset($_SESSION["name"])){
 	?>
 
 	<section class="section">
-		<a href="calendar.php" class="a-calendar">
+		
 		<div class="section">
+		<a href="calendar.php" class="a-calendar">
 			<?php
 			require __DIR__ . '/vendor/autoload.php';
 			
@@ -180,12 +183,12 @@ if (isset($_SESSION["name"])){
 					
 					if (isset($animeMap[$idAnime])) {
 						$animeTitle = $animeMap[$idAnime];
-						$sumary = $animeTitle . "</br>" . $airingDate . "</br>";
+						$summary = "</br>" . $animeTitle . "</br>" . $airingDate . "</br>";
 						$events[] = [
 							'start' => $airingDate,
 							'end' => $airingDate,
 							'mask' => true,
-							'summary' => $sumary,
+							'summary' => $summary,
 						];
 					}
 				}
@@ -199,8 +202,9 @@ if (isset($_SESSION["name"])){
 		
 			
 			?>
-		</div>
 		</a>
+		</div>
+		
 	</section>
 	<footer>
 	<div class="container">

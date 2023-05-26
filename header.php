@@ -103,7 +103,7 @@
 
 .searchbar button[type="submit"] {
     padding: 5px 10px;
-    background-color: #ffd700;
+    background-color: #FFD25A;
     color: #333;
     border: none;
     border-radius: 3px;
@@ -197,8 +197,52 @@
 }
 
 @media screen and (max-width: 767px) {
+        .navbar_left ul,
+        .navbar_right .searchbar {
+            padding: 0;
+        }
+
+        .navbar img{
+            margin-top: 30px;
+        }
+
+        .navbar ul {
+            flex-direction: column;
+            align-items: center;
+            margin-left: 20px;
+        }
+
+        .navbar li {
+            margin: 10px 0;
+        }
+
+        .searchbar {
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
         .searchbar input[type="text"] {
             width: 150px;
+            margin-right: 0;
+        }
+
+        .searchbar button[type="submit"] {
+            margin-top: 10px;
+        }
+
+        .user {
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .userbtn {
+            top: 10px;
+            right: 10px;
+        }
+
+        .userlist {
+            right: initial;
+            left: 0;
         }
     }
-	</style>
+</style>

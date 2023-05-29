@@ -20,7 +20,7 @@ class MySQLiDB implements IDB {
         }
         $this->dns = $settings['database']['driver']. ':host=' . $settings['database']['host']. ((!empty($settings['database']['port'])) ? (';port=' . $settings['database']['port']) : ''). ';dbname=' . $settings['database']['schema'];
         try {
-            $this->connection = new PDO($this->dns, $settings['database']['username'], $settings['database']['password']);
+            $this->db = new PDO($this->dns, $settings['database']['username'], $settings['database']['password']);
         } catch (PDOException $e) {
             print "Error!: " . $e->getMessage() . "<br/>";
             die();

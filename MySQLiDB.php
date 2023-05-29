@@ -16,17 +16,19 @@ class MySQLiDB implements IDB {
 
     // Set variables of MySQLiDB
     public function __construct(){
-        /*
+
         $this->dbhost = $dbHost;
         $this->dbuser = $dbUser;
         $this->dbpass = $dbPass;
         $this->dbname = $dbName;
         //$this->dbport = "";
-        */
+
+        /*
         $this->dbhost = "127.0.0.1";
         $this->dbuser = "root";
         $this->dbpass = "root";
         $this->dbname = "kalani";
+        */
     }
     // Connect to database
     public function _connect() {

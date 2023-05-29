@@ -4,4 +4,4 @@
 /graphql2.php
 /test.php
 /.gitattributes
-/secure.php
+.gitignore

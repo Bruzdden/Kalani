@@ -14,8 +14,6 @@ require_once "MySQLiDB.php";
 // Create a new MySQLiDB instance
 $db = new MySQLiDB();
 
-// Connect to the database
-$db->_connect();
 
 // Check if the login form was submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["login"])) {

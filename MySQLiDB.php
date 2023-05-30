@@ -5,10 +5,6 @@ require_once "IDB.php";
 
 // Implement IDB Interface
 class MySQLiDB implements IDB {
-    private $dbhost;
-    private $dbuser;
-    private $dbpass;
-    private $dbname;
 
     //private $dbport;
     public static $dns = null;

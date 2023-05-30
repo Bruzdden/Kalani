@@ -7,8 +7,6 @@ require_once "MySQLiDB.php";
 // Create a new MySQLiDB instance
 $db = new MySQLiDB();
 
-// Connect to the database
-$db->_connect();
 
 
 use GuzzleHttp\Client;

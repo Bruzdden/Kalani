@@ -13,7 +13,6 @@ if (!isset($_SESSION["name"])) {
 use benhall14\phpCalendar\Calendar as Calendar;
 			
 $db = new MySQLiDB();
-$db->_connect();
 
 $calendar = new Calendar;
 $calendar->stylesheet();

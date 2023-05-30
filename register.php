@@ -7,8 +7,6 @@ require_once "MySQLiDB.php";
 // Create a new MySQLiDB instance
 $db = new MySQLiDB();
 
-// Connect to the database
-$db->_connect();
 
 // Check if the registration form has been submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

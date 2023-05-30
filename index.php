@@ -4,8 +4,6 @@ require_once "MySQLiDB.php";
 // Create a new MySQLiDB instance
 $db = new MySQLiDB();
 
-// Connect to the database
-$db->_connect();
 
 if (isset($_SESSION["idUser"])) {
     $select = $db->_select('user', [], []);

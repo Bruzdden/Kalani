@@ -2,38 +2,42 @@
 
 // Requiring IDB Interface
 require_once "IDB.php";
-require_once "secure.php";
 
 // Implement IDB Interface
 class MySQLiDB implements IDB {
-    private $db;
     private $dbhost;
     private $dbuser;
     private $dbpass;
     private $dbname;
 
     //private $dbport;
+    public static $dns = null;
+    public $db;
+    function __construct($file = 'db.ini') {
 
-    // Set variables of MySQLiDB
-    public function __construct(){
-
+        if (!$settings = parse_ini_file($file, TRUE)) {
+            throw new Exception('Unable to open ' . $file);
+        }
+        $this->dns = $settings['database']['driver']. ':host=' . $settings['database']['host']. ((!empty($settings['database']['port'])) ? (';port=' . $settings['database']['port']) : ''). ';dbname=' . $settings['database']['schema'];
+        try {
+            $this->db = new PDO($this->dns, $settings['database']['username'], $settings['database']['password']);
+        } catch (PDOException $e) {
+            print "Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
+        /*
         $this->dbhost = $dbHost;
         $this->dbuser = $dbUser;
         $this->dbpass = $dbPass;
         $this->dbname = $dbName;
         //$this->dbport = "";
-
+        */
         /*
         $this->dbhost = "127.0.0.1";
         $this->dbuser = "root";
         $this->dbpass = "root";
         $this->dbname = "kalani";
         */
-    }
-    // Connect to database
-    public function _connect() {
-        $this->db = new mysqli($this->dbhost, $this->dbuser, $this->dbpass, $this->dbname);
-        return null;
     }
     // Select what u want from database
     public function _select(string $table, array $fields = [], array $conditions = []): array {

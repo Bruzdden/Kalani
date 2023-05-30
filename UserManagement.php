@@ -8,8 +8,6 @@ require_once 'mySQLiDB.php';
 // Create a new MySQLiDB instance
 $db = new MySQLiDB();
 
-// Connect to the database
-$db->_connect();
 
 // Check if the user is logged in and has rank 1
 $users = $db->_select('user',[], []);

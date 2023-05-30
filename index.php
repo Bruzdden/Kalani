@@ -43,7 +43,7 @@ if (isset($_SESSION["idUser"])) {
 
 	?>
 	<div class="image-container">
-		<img src="kalani.png" alt="kalani">
+		<img src="kalani.svg" alt="kalani">
 	</div>
 	
 

@@ -1,7 +1,13 @@
 {
     "require": {
-        "benhall14/php-calendar": "^1.4",
+        "maxmiliandao/php-calendar": "dev-master",
         "phpmailer/phpmailer": "^6.8",
         "guzzlehttp/guzzle": "^7.0"
-    }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/MaxmilianDao/php-calendar"
+        }
+    ]
 }

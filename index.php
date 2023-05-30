@@ -6,19 +6,25 @@ $db = new MySQLiDB();
 
 
 if (isset($_SESSION["idUser"])) {
-    $select = $db->_select('user', [], []);
-    if (count($select) == 1) {
-        if (empty($select[0]["rank"]) && strtotime($select[0]["joinDate"]) <= strtotime('-3 minutes')) {
-            $delete = $db->_delete('user', $select[0]["idUser"], $_SESSION["idUser"]);
-            if ($delete) {
-                header('Location: logout.php');
-                exit();
-            } else {
-                $error = $db->getLastError();
-                echo "Error deleting user: " . print_r($error, true);
-            }
-        }
-    }
+	$select = $db->_select('user', [], []);
+	if (count($select) == 1) {
+		if (empty($select[0]["rank"]) && strtotime($select[0]["joinDate"]) <= strtotime('-3 minutes')) {
+			echo "Users rank is empty. Join date: " . $select[0]["joinDate"] . "<br>";
+
+			$delete = $db->_delete('user', $select[0]["idUser"], $_SESSION["idUser"]);
+			if ($delete) {
+				header('Location: logout.php');
+				exit();
+			} else {
+				$error = $db->getLastError();
+				echo "Error deleting user: " . print_r($error, true);
+			}
+		} else {
+			echo "Users rank is not empty or join date is not older than 3 minutes.<br>";
+		}
+	} else {
+		echo "No user found or multiple users found.<br>";
+	}
 }
 
 
@@ -31,7 +37,7 @@ if (isset($_SESSION["idUser"])) {
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="style.css">
 	<link rel="stylesheet" href="calendar.css">
-	<link rel="stylsheet" type="text/css" href="/vendor/benhall14/php-calendar/html/css/calendar.min.css">
+	<link rel="stylsheet" type="text/css" href="/vendor/maxmiliandao/php-calendar/html/css/calendar.css">
 	<link rel="icon" type="image/x-icon" href="favicon.ico">
 	<title>Kalani</title>
 </head>
@@ -127,7 +133,7 @@ if (isset($_SESSION["idUser"])) {
 			<?php
 			require __DIR__ . '/vendor/autoload.php';
 			
-			use benhall14\phpCalendar\Calendar as Calendar;
+			use maxmiliandao\phpCalendar\Calendar as Calendar;
 			
 			$calendar = new Calendar;
 			$calendar->stylesheet();

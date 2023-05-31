@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Simple PHP Calendar Class.
  *
@@ -9,7 +8,7 @@
  * @package protocols
  * @version 1.2
  * @author Benjamin Hall <https://conobe.co.uk>
- */
+*/
 class Calendar
 {
     /**
@@ -72,7 +71,7 @@ class Calendar
             'dow' => 1,
             'initials' => 'M',
             'full' => 'Monday',
-        ],
+        ], 
         'tuesday' => [
             'dow' => 2,
             'initials' => 'T',
@@ -99,18 +98,18 @@ class Calendar
             'full' => 'Saturday',
         ],
     ];
-
+    
     /**
      * The month names. Default EN.
      *
      * @var array
      */
     private $months = [
-        'january' => 'January',
-        'february' => 'February',
-        'march' => 'March',
-        'april' => 'April',
-        'may' => 'May',
+        'january' => 'January', 
+        'february' => 'February', 
+        'march' => 'March', 
+        'april' => 'April', 
+        'may' => 'May', 
         'june' => 'June',
         'july' => 'July',
         'august' => 'August',
@@ -133,35 +132,35 @@ class Calendar
      * @var boolean
      */
     private $hide_sundays = false;
-
+    
     /**
      * Hide all 'mondays' from the calendar view.
      *
      * @var boolean
      */
     private $hide_mondays = false;
-
+    
     /**
      * Hide all 'tuesdays' from the calendar view.
      *
      * @var boolean
      */
     private $hide_tuesdays = false;
-
+    
     /**
      * Hide all 'wednesdays' from the calendar view.
      *
      * @var boolean
      */
     private $hide_wednesdays = false;
-
+    
     /**
      * Hide all 'thursdays' from the calendar view.
      *
      * @var boolean
      */
     private $hide_thursdays = false;
-
+    
     /**
      * Hide all 'fridays' from the calendar view.
      *
@@ -236,17 +235,17 @@ class Calendar
         ]);
 
         $this->setMonths([
-            'january' => 'Enero',
-            'february' => 'Febrero',
-            'march' => 'Marzo',
-            'april' => 'Abril',
-            'may' => 'Mayo',
-            'june' => 'Junio',
-            'july' => 'Julio',
-            'august' => 'Agosto',
-            'september' => 'Septiembre',
-            'october' => 'Octubre',
-            'november' => 'Noviembre',
+            'january' => 'Enero',  
+            'february' => 'Febrero',  
+            'march' => 'Marzo',  
+            'april' => 'Abril',  
+            'may' => 'Mayo',  
+            'june' => 'Junio',  
+            'july' => 'Julio',  
+            'august' => 'Agosto',  
+            'september' => 'Septiembre',  
+            'october' => 'Octubre',  
+            'november' => 'Noviembre',  
             'december' => 'Diciembre'
         ]);
 
@@ -410,42 +409,66 @@ class Calendar
      */
     public function stylesheet($print = true)
     {
-        $styles = '<style>.calendar{background:#2ca8c2;color:#fff;width:100%;font-family:Oxygen;table-layout:fixed}.calendar.purple{background:#913ccd}.calendar.pink{background:#f15f74}.calendar.orange{background:#f76d3c}.calendar.yellow{background:#f7d842}.calendar.green{background:#98cb4a}.calendar.grey{background:#839098}.calendar.blue{background:#5481e6}.calendar-title th{font-size:22px;font-weight:700;padding:20px;text-align:center;text-transform:uppercase;background:rgba(0,0,0,.05)}.calendar-header th{padding:10px;text-align:center;background:rgba(0,0,0,.1)}.calendar tbody tr td{text-align:center;vertical-align:top;width:14.28%}.calendar tbody tr td.pad{background:rgba(255,255,255,.1)}.calendar tbody tr td.day div:first-child{padding:4px;line-height:17px;height:25px}.calendar tbody tr td.day div:last-child{font-size:10px;padding:4px;min-height:25px}.calendar tbody tr td.today{background:rgba(0,0,0,.25)}.calendar tbody tr td.mask,.calendar tbody tr td.mask-end,.calendar tbody tr td.mask-start{background:#c23b22}.calendar .cal-weekview-time{padding:4px 2px 2px 4px;}.calendar .cal-weekview-time > div{background:rgba(0,0,0,0.03);padding:10px;min-height:50px;}.calendar .cal-weekview-event.mask-start,.calendar .cal-weekview-event.mask,.calendar .cal-weekview-event.mask-end{background:#C23B22;margin-bottom:3px;padding:5px;}.calendar .cal-weekview-time-th{background:rgba(0,0,0,.1);}.calendar .cal-weekview-time-th > div{padding:10px;min-height:50px;}
-            .custom-button {
-                display: inline-block;
-                padding: 10px 15px;
-                background-color: #f0f0f0;
-                border: none;
-                color: #333;
-                font-size: 14px;
-                text-align: center;
-                text-decoration: none;
-                cursor: pointer;
-                transition: background-color 0.3s;
-            }
-        
-            .custom-button:hover {
-                background-color: #ccc;
-            }
-        
-            .prev-month {
-                margin-right: 10px;
-            }
-        
-            .next-month {
-                margin-left: 10px;
-            }
-        
-            .calendar-month {
-                flex-grow: 1;
-                text-align: center;
-                font-weight: bold;
-                font-size: 18px;
-            }
-            .cal-event-box{
-                max-height: 100px;
-                overflow-y: auto;
-            }
+        $styles = '<style>.calendar
+        {background:#FFDA76 ;color:#000;width:100%;font-family:Oxygen;table-layout:fixed}
+        .calendar.purple{background:#913ccd}.calendar.pink{background:#f15f74}
+        .calendar.orange{background:#f76d3c}.calendar.yellow{background:#f7d842}
+        .calendar.green{background:#98cb4a}.calendar.grey{background:#839098}
+        .calendar.blue{background:#5481e6}
+        .calendar-title th{font-size:22px;font-weight:700;padding:20px;text-align:center;text-transform:uppercase;background:rgba(0,0,0,.05)}
+        .calendar-header th{padding:10px;text-align:center;background:rgba(0,0,0,.1)}
+        .calendar tbody tr td{text-align:center;vertical-align:top;width:14.28%}
+        .calendar tbody tr td.pad{background:rgba(255,255,255,.1)}
+        .calendar tbody tr td.day div:first-child{padding:4px;line-height:17px;height:25px}
+        .calendar tbody tr td.day div:last-child{font-size:10px;padding:4px;min-height:25px}
+        .calendar tbody tr td.today{background:rgba(0,0,0,.25)}.calendar tbody tr td.mask,
+        .calendar tbody tr td.mask-end,.calendar tbody tr td.mask-start{background:#8257A7}
+        .calendar .cal-weekview-time{padding:4px 2px 2px 4px;}
+        .calendar .cal-weekview-time > div{background:rgba(0,0,0,0.03);padding:10px;min-height:50px;}
+        .calendar .cal-weekview-event.mask-start,.calendar .cal-weekview-event.mask,.calendar .cal-weekview-event.mask-end{background:#C23B22;margin-bottom:3px;padding:5px;}
+        .calendar .cal-weekview-time-th{background:rgba(0,0,0,.1);}
+        .calendar .cal-weekview-time-th > div{padding:10px;min-height:50px;}
+        .cal-event-box {
+            overflow-y: auto;
+            height: 100px;
+            max-height: 100px;
+          }
+        .calendar-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .custom-button {
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: #f0f0f0;
+            border: none;
+            color: #333;
+            font-size: 14px;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+    
+        .custom-button:hover {
+            background-color: #ccc;
+        }
+    
+        .prev-month {
+            margin-right: 10px;
+        }
+    
+        .next-month {
+            margin-left: 10px;
+        }
+    
+        .calendar-month {
+            flex-grow: 1;
+            text-align: center;
+            font-weight: bold;
+            font-size: 30px;
+        }
         </style>';
 
         if ($print) {
@@ -475,21 +498,21 @@ class Calendar
     public function addEvent($start, $end, $summary = false, $mask = false, $classes = false)
     {
         $event = new stdClass();
-
+        
         if (strpos($start, ' ') !== false) {
-            $event->start = DateTime::createFromFormat('Y-m-d H:i', $start);
+            $event->start = DateTime::createFromFormat('Y-m-d', $start);
         } else {
             $event->start = DateTime::createFromFormat('Y-m-d', $start);
         }
 
         if (strpos($end, ' ') !== false) {
-            $event->end = DateTime::createFromFormat('Y-m-d H:i', $end);
+            $event->end = DateTime::createFromFormat('Y-m-d', $end);
         } else {
             $event->end = DateTime::createFromFormat('Y-m-d', $end);
         }
-
+        
         $event->mask = $mask ? true : false;
-
+        
         if ($classes) {
             if (is_array($classes)) {
                 $classes = implode(' ', $classes);
@@ -499,8 +522,13 @@ class Calendar
         } else {
             $event->classes = false;
         }
-
+        
         $event->summary = $summary ? $summary : false;
+
+
+        $event->gridClass = 'event-grid';
+        $event->gridIndex = count($this->events);
+        $event->gridContainer = 'container-' . $event->start->format('Y-m-d');
 
         $this->events[] = $event;
 
@@ -572,7 +600,7 @@ class Calendar
 
     /**
      * Add any custom table classes that should be injected into the calender table header.
-     *
+     * 
      * This can be a space separated list, or an array of classes.
      *
      * @param mixed $classes
@@ -661,6 +689,13 @@ class Calendar
             $date->modify('first day of this month');
         }
 
+        if (isset($_GET['date'])) {
+            $date = DateTime::createFromFormat('Y-m-d', $_GET['date']);
+        } else {
+            $date = new DateTime();
+            $date->modify('first day of this month');
+        }
+
         $today = new DateTime();
 
         $total_days_in_month = (int) $date->format('t');
@@ -672,15 +707,19 @@ class Calendar
         $calendar .= '<thead>';
 
         $calendar .= '<tr class="calendar-title">';
-
         $calendar .= '<th colspan="' . $colspan . '">';
-
+        
+        $calendar .= '<form method="GET">';
+        $calendar .= '<input type="hidden" name="current_date" value="' . $date->format('Y-m-d') . '">';
+        
         $calendar .= '<div class="calendar-buttons">';
+
         // Add previous month button
         $prevMonth = clone $date;
         $prevMonth->modify('-1 month');
-        $calendar .= '<button type="submit" name="date" value="' . $prevMonth->format('Y-m-d') . '" class="custom-button prev-month">Previous Month</button>';
-
+        $calendar .= '<button class="custom-button prev-month" type="submit" name="date" value="' . $prevMonth->format('Y-m-d') . '">Previous Month</button>';
+        
+        // Calendat month title
         $calendar .= '<div class="calendar-month">';
         $calendar .= $this->months[strtolower($date->format('F'))] . ' ' . $date->format('Y');
         $calendar .= '</div>';
@@ -688,10 +727,12 @@ class Calendar
         // Add next month button
         $nextMonth = clone $date;
         $nextMonth->modify('+1 month');
-        $calendar .= '<button type="submit" name="date" value="' . $nextMonth->format('Y-m-d') . '" class="custom-button next-month">Next Month</button>';
+        $calendar .= '<button class="custom-button next-month" type="submit" name="date" value="' . $nextMonth->format('Y-m-d') . '">Next Month</button>';
 
         $calendar .= '</div>';
 
+        $calendar .= '</form>';
+        
         $calendar .= '</th>';
 
         $calendar .= '</tr>';
@@ -933,11 +974,11 @@ class Calendar
             $calendar .= '<tr>';
 
             $calendar .= '<td class="cal-weekview-time-th"><div>' . $time . '</div></td>';
-
+            
             foreach ($dates as $date ){
 
                 $datetime = $date->setTime(substr($time, 0, 2), substr($time, 3, 2));
-
+                
                 $events = $this->findEvents($datetime);
 
                 $class = '';
@@ -976,7 +1017,7 @@ class Calendar
 
                     }
                 }
-
+                
                 $calendar .= '</div>';
 
                 $calendar .= '</td>';
@@ -995,7 +1036,7 @@ class Calendar
      * Draw the calendar and return HTML output.
      * @param string  $date    The date of this calendar.
      * @param string  $format  The format of the preceding date.
-     *
+     * 
      * @return string         The calendar
      */
     public function draw($date = false, $color = false)
@@ -1021,4 +1062,3 @@ class Calendar
         echo $this->draw($date, $color);
     }
 }
-

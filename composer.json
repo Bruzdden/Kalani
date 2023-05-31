@@ -9,5 +9,6 @@
             "type": "vcs",
             "url": "https://github.com/MaxmilianDao/php-calendar"
         }
-    ]
+    ],
+    "minimum-stability": "dev"
 }

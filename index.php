@@ -37,7 +37,7 @@ if (isset($_SESSION["idUser"])) {
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="style.css">
 	<link rel="stylesheet" href="calendar.css">
-	<link rel="stylsheet" type="text/css" href="/vendor/maxmiliandao/php-calendar/html/css/calendar.min.css">
+	<link rel="stylsheet" type="text/css" href="/css/calendar.min.css">
 	<link rel="icon" type="image/x-icon" href="favicon.ico">
 	<title>Kalani</title>
 </head>
@@ -132,10 +132,9 @@ if (isset($_SESSION["idUser"])) {
 		<a href="calendar.php" class="a-calendar">
 			<?php
 			require __DIR__ . '/vendor/autoload.php';
+			require_once("calendarClass.php");
 			
-			use benhall14\phpCalendar\Calendar as Calendar;
-			
-			$calendar = new Calendar;
+			$calendar = new Calendar();
 			$calendar->stylesheet();
 			
 

@@ -2,6 +2,7 @@
 require_once("graphql.php");
 require_once "MySQLiDB.php";
 require __DIR__ . '/vendor/autoload.php';
+require_once("calendarClass.php");
 
 $animeSearch = new AnimeSearch;
 
@@ -10,11 +11,11 @@ if (!isset($_SESSION["name"])) {
     exit();
 }
 
-use benhall14\phpCalendar\Calendar as Calendar;
 			
 $db = new MySQLiDB();
 
-$calendar = new Calendar;
+
+$calendar = new Calendar();
 $calendar->stylesheet();
 
 

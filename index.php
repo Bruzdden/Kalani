@@ -37,7 +37,7 @@ if (isset($_SESSION["idUser"])) {
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="style.css">
 	<link rel="stylesheet" href="calendar.css">
-	<link rel="stylsheet" type="text/css" href="/vendor/maxmiliandao/php-calendar/html/css/calendar.css">
+	<link rel="stylsheet" type="text/css" href="/vendor/maxmiliandao/php-calendar/html/css/calendar.min.css">
 	<link rel="icon" type="image/x-icon" href="favicon.ico">
 	<title>Kalani</title>
 </head>

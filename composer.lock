@@ -339,12 +339,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/MaxmilianDao/php-calendar.git",
-                "reference": "802fc397929c4dedd47f67fd19653b3b75d85769"
+                "reference": "cacb27947c639db7803be167c3b45f28737807d1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MaxmilianDao/php-calendar/zipball/802fc397929c4dedd47f67fd19653b3b75d85769",
-                "reference": "802fc397929c4dedd47f67fd19653b3b75d85769",
+                "url": "https://api.github.com/repos/MaxmilianDao/php-calendar/zipball/cacb27947c639db7803be167c3b45f28737807d1",
+                "reference": "cacb27947c639db7803be167c3b45f28737807d1",
                 "shasum": ""
             },
             "require": {
@@ -354,7 +354,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "MaxmilianDao\\": "src/"
+                    "maxmiliandao\\": "src/"
                 }
             },
             "license": [
@@ -379,7 +379,7 @@
             "support": {
                 "source": "https://github.com/MaxmilianDao/php-calendar/tree/master"
             },
-            "time": "2023-05-31T10:25:03+00:00"
+            "time": "2023-05-31T10:34:59+00:00"
         },
         {
             "name": "phpmailer/phpmailer",

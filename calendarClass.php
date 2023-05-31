@@ -1,7 +1,5 @@
 <?php
 
-use DateTime;
-use stdClass;
 
 /**
  * Simple PHP Calendar Class.

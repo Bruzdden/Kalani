@@ -133,7 +133,7 @@ if (isset($_SESSION["idUser"])) {
 			<?php
 			require __DIR__ . '/vendor/autoload.php';
 			
-			use benhall14\phpCalendar\Calendar as Calendar;
+			use maxmiliandao\phpCalendar\Calendar as Calendar;
 			
 			$calendar = new Calendar;
 			$calendar->stylesheet();

@@ -10,7 +10,7 @@ if (!isset($_SESSION["name"])) {
     exit();
 }
 
-use maxmiliandao\phpCalendar\Calendar as Calendar;
+use benhall14\phpCalendar\Calendar as Calendar;
 			
 $db = new MySQLiDB();
 

@@ -133,9 +133,9 @@ if (isset($_SESSION["idUser"])) {
 			<?php
 			require __DIR__ . '/vendor/autoload.php';
 			
-			use maxmiliandao\phpCalendar as Calendar;
+			use maxmiliandao\phpCalendar\Calendar as Calendar;
 			
-			$calendar = new Calendar;
+			$calendar = new Calendar();
 			$calendar->stylesheet();
 			
 

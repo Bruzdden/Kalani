@@ -5,21 +5,7 @@ require_once "MySQLiDB.php";
 $db = new MySQLiDB();
 
 
-if (isset($_SESSION["idUser"])) {
-	$select = $db->_select('user', array(), array("name" => $_SESSION["name"]));
-	if (count($select)) {
-		$user = $select[0];
-		if (empty($user["rank"]) && (strtotime($user["joinDate"]) <= (time() - 	93600))) {
-			$delete = $db->_delete('user', $_SESSION["idUser"], 'idUser');
-			$deleteAnime = $db->_delete('anime', $_SESSION["idUser"], 'idUser');
-			if (!$delete && !$deleteAnime) {
-				$error = $db->getLastError();
-				echo "Error deleting user: " . print_r($error, true);
-			}
-			session_destroy();
-			}
-		}
-}
+
 
 
 ?>
@@ -45,7 +31,7 @@ if (isset($_SESSION["idUser"])) {
 	<div class="image-container">
 		<img src="kalani.png" alt="kalani">
 	</div>
-	
+
 
 	<?php
 	//require_once("graphql.php");
@@ -77,7 +63,7 @@ if (isset($_SESSION["idUser"])) {
                     }
                 }
             }
-            QUERY;    
+            QUERY;
 	$queryPopular = <<<'QUERY'
 			query ($search: String) {
 				Page {
@@ -108,33 +94,33 @@ if (isset($_SESSION["idUser"])) {
 
 		$dataNew = $animeSearch->fetchData($queryNew);
 		$dataPopular = $animeSearch->fetchData($queryPopular);
-			
+
 		$animeListNew = array_slice($dataNew, 0, 5);
 		$animeListPopular = array_slice($dataPopular, 0, 5);
-			
+
 		$htmlContainerNew = $animeSearch->generateAnimeContainer($animeListNew, '5 Latest Anime');
 		$htmlContainerPopular = $animeSearch->generateAnimeContainer($animeListPopular, '5 Trending Anime');
-			
+
 		echo $htmlContainerNew;
 		echo $htmlContainerPopular;
 
 	?>
 
 	<section class="section">
-		
+
 		<div class="section">
 		<a href="calendar.php" class="a-calendar">
 			<?php
 			require __DIR__ . '/vendor/autoload.php';
 			require_once("calendarClass.php");
-			
+
 			$calendar = new Calendar();
 			$calendar->stylesheet();
-			
 
-			
 
-			
+
+
+
 			if (isset($_SESSION["name"])) {
 				$queryCalendar = <<<'QUERY'
 				query ($search: String) {
@@ -167,17 +153,17 @@ if (isset($_SESSION["idUser"])) {
 				$dataCalendar = $animeSearch->fetchData($queryCalendar);
 				$select = $db->_select('anime', [], ['idUser' => $_SESSION['idUser']]);
 
-				
+
 				$animeMap = [];
 				foreach ($dataCalendar as $anime) {
 					$animeMap[$anime['id']] = $anime['title']['english'];
 				}
-				
+
 				$events = [];
 				foreach ($select as $anime) {
 					$airingDate = date("Y-m-d", strtotime($anime["airingDate"]));
 					$idAnime = (string)$anime["idAnime"];
-					
+
 					if (isset($animeMap[$idAnime])) {
 						$animeTitle = $animeMap[$idAnime];
 						$summary = "</br>" . $animeTitle . "</br>" . $airingDate . "</br>";
@@ -194,14 +180,14 @@ if (isset($_SESSION["idUser"])) {
 
 			$calendar->display();
 
-			
-			
-		
-			
+
+
+
+
 			?>
 		</a>
 		</div>
-		
+
 	</section>
 	<footer>
 	<div class="container">

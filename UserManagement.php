@@ -10,12 +10,13 @@ $db = new MySQLiDB();
 
 
 // Check if the user is logged in and has rank 1
-$users = $db->_select('user',[], []);
-foreach ($users as $user){
-  if (!isset($_SESSION['name']) || $user['rank'] != 2) {
-    header('Location: login.php');
-    exit();
-}
+$users = $db->_select('user',[], array("name" => $_SESSION["name"]));
+if (count($users)){
+    $user = $users[0];
+    if (!isset($_SESSION['name']) || $user['rank'] != 2) {
+        header('Location: login.php');
+        exit();
+    }
 }
 
 
@@ -51,6 +52,24 @@ if (isset($_POST['delete_user'])) {
         $error = $db->getLastError();
         echo "Error updating user: " . print_r($error, true);
     }
+} else if (isset($_POST['activate_user'])) {
+    $idUser = $_POST['user_id'];
+    $result = $db->_update('user', 'idUser', $idUser, ['rank' => 1]);
+    if ($result) {
+        echo "User activated successfully";
+    } else {
+        $error = $db->getLastError();
+        echo "Error updating user: " . print_r($error, true);
+    }
+} else if (isset($_POST['deactivate_user'])) {
+    $idUser = $_POST['user_id'];
+    $result = $db->_update('user', 'idUser', $idUser, ['rank' => 0]);
+    if ($result) {
+        echo "User deactivated successfully";
+    } else {
+        $error = $db->getLastError();
+        echo "Error updating user: " . print_r($error, true);
+    }
 }
 
 // Select the names of users from the "user" table
@@ -58,11 +77,15 @@ $users = $db->_select('user',[], []);
 
 // Generate an HTML table with the user names and delete/make admin buttons
 echo '<table class="user-table">';
-echo '<thead><tr><th>User Name</th><th>Action</th></tr></thead>';
+echo '<thead><tr><th>ID</th><th>User Name</th><th>Email</th><th>Join Date</th><th>Rank</th><th>Action</th></tr></thead>';
 echo '<tbody>';
 foreach ($users as $user) {
     echo '<tr>';
+    echo '<td>' . $user['idUser'] . '</td>';
     echo '<td>' . $user['name'] . '</td>';
+    echo '<td>' . $user['email'] . '</td>';
+    echo '<td>' . $user['joinDate'] . '</td>';
+    echo '<td>' . $user['rank'] . '</td>';
     echo '<td>';
     echo '<form method="post" action="' . htmlspecialchars($_SERVER["PHP_SELF"]) . '">';
     echo '<input type="hidden" name="user_id" value="' . $user['idUser'] . '">';
@@ -72,6 +95,12 @@ foreach ($users as $user) {
     }
     if ($user['rank'] == 2) {
         echo '<button class="derank-button" name="derank_user">Derank</button>';
+    }
+    if ($user['rank'] == 0){
+        echo '<button class="activate-user-button" name="activate_user">Activate</button>';
+    }
+    if ($user['rank'] != 0){
+        echo '<button class="derank-button" name="deactivate_user">Deactivate</button>';
     }
     echo '</form>';
     echo '</td>';
@@ -85,7 +114,7 @@ echo '</table>';
 .user-table {
   margin: 0 auto;
   width: 80%;
-  max-width: 800px;
+  max-width: 1000px;
   border-collapse: collapse;
 }
 .user-table td, .user-table th {
@@ -131,6 +160,18 @@ echo '</table>';
 }
 .derank-button:hover{
   background-color: #d32f2f;
+}
+.activate-user-button {
+    margin-left: 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 16px;
+    cursor: pointer;
+}
+.activate-user-button:hover {
+    background-color: #3e8e41;
 }
 @media screen and (max-width: 600px) {
   .user-table {

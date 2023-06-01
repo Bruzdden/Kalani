@@ -12,9 +12,7 @@ if (isset($_SESSION["idUser"])) {
 		if (empty($user["rank"]) && strtotime($user["joinDate"]) <= strtotime('-3 minutes')) {
 			$delete = $db->_delete('user', $_SESSION["idUser"], 'idUser');
 			$deleteAnime = $db->_delete('anime', $_SESSION["idUser"], 'idUser');
-			if ($delete && $deleteAnime) {
-				header("Location:index.php");
-			} else {
+			if (!$delete && !$deleteAnime) {
 				$error = $db->getLastError();
 				echo "Error deleting user: " . print_r($error, true);
 			}

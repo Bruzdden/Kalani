@@ -13,7 +13,6 @@ if (isset($_SESSION["idUser"])) {
 			$delete = $db->_delete('user', $user["idUser"], $_SESSION["idUser"]);
 			if ($delete) {
 				header('Location: logout.php');
-				exit();
 			} else {
 				$error = $db->getLastError();
 				echo "Error deleting user: " . print_r($error, true);

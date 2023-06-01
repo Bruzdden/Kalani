@@ -7,19 +7,18 @@ $db = new MySQLiDB();
 
 if (isset($_SESSION["idUser"])) {
 	$select = $db->_select('user', array(), array("name" => $_SESSION["name"]));
-	if (count($select) == 1) {
+	if (count($select)) {
 		$user = $select[0];
-		if (empty($user["rank"]) && strtotime($user["joinDate"]) <= strtotime('-3 minutes')) {
+		if (empty($user["rank"]) && (strtotime($user["joinDate"]) <= (time() - 	93600))) {
 			$delete = $db->_delete('user', $_SESSION["idUser"], 'idUser');
 			$deleteAnime = $db->_delete('anime', $_SESSION["idUser"], 'idUser');
 			if (!$delete && !$deleteAnime) {
 				$error = $db->getLastError();
 				echo "Error deleting user: " . print_r($error, true);
 			}
+			session_destroy();
+			}
 		}
-	} else {
-		echo "No user found or multiple users found.<br>";
-	}
 }
 
 

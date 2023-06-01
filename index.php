@@ -10,8 +10,8 @@ if (isset($_SESSION["idUser"])) {
 	if (count($select) == 1) {
 		$user = $select[0];
 		if (empty($user["rank"]) && strtotime($user["joinDate"]) <= strtotime('-3 minutes')) {
-			$delete = $db->_delete('user', $user["idUser"], $_SESSION["idUser"]);
-			$deleteAnime = $db->_delete('anime', $user["idUser"], $_SESSION["idUser"]);
+			$delete = $db->_delete('user', $_SESSION["idUser"], 'idUser');
+			$deleteAnime = $db->_delete('anime', $_SESSION["idUser"], 'idUser');
 			if ($delete && $deleteAnime) {
 				header("Location:index.php");
 			} else {

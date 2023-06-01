@@ -6,12 +6,13 @@ $db = new MySQLiDB();
 
 
 if (isset($_SESSION["idUser"])) {
-	$select = $db->_select('user', [], []);
+	$select = $db->_select('user', array(), array("name" => $_SESSION["name"]));
 	if (count($select) == 1) {
-		if (empty($select[0]["rank"]) && strtotime($select[0]["joinDate"]) <= strtotime('-3 minutes')) {
-			echo "Users rank is empty. Join date: " . $select[0]["joinDate"] . "<br>";
+		$user = $select[0];
+		if (empty($user["rank"]) && strtotime($user["joinDate"]) <= strtotime('-3 minutes')) {
+			echo "Users rank is empty. Join date: " . $user["joinDate"] . "<br>";
 
-			$delete = $db->_delete('user', $select[0]["idUser"], $_SESSION["idUser"]);
+			$delete = $db->_delete('user', $user["idUser"], $_SESSION["idUser"]);
 			if ($delete) {
 				header('Location: logout.php');
 				exit();

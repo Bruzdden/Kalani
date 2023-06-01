@@ -13,13 +13,11 @@ if (isset($_SESSION["idUser"])) {
 			$delete = $db->_delete('user', $user["idUser"], $_SESSION["idUser"]);
 			$deleteAnime = $db->_delete('anime', $user["idUser"], $_SESSION["idUser"]);
 			if ($delete && $deleteAnime) {
-				header('Location: logout.php');
+				header("Location:index.php");
 			} else {
 				$error = $db->getLastError();
 				echo "Error deleting user: " . print_r($error, true);
 			}
-		} else {
-			echo "Users rank is not empty or join date is not older than 3 minutes.<br>";
 		}
 	} else {
 		echo "No user found or multiple users found.<br>";

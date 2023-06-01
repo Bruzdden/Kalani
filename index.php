@@ -10,8 +10,6 @@ if (isset($_SESSION["idUser"])) {
 	if (count($select) == 1) {
 		$user = $select[0];
 		if (empty($user["rank"]) && strtotime($user["joinDate"]) <= strtotime('-3 minutes')) {
-			echo "Users rank is empty. Join date: " . $user["joinDate"] . "<br>";
-
 			$delete = $db->_delete('user', $user["idUser"], $_SESSION["idUser"]);
 			if ($delete) {
 				header('Location: logout.php');

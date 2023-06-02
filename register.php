@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         //Content
         $mail->isHTML(true);
         $mail->Subject = "Account registration confirmation";
-        $message = "Here is the code: " . $verificationCode;
+        $message = "Here is the verification code to register on kalani: " . $verificationCode;
         $mail->Body = $message;
 
         $mail->send();

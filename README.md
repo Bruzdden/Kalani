@@ -76,11 +76,11 @@ TBD link to running docker container
 
 [Lukáš Divíšek](https://www.github.com/Bruzdden) 
 
-- DB stuff, tbd
+- DB/sql, OOP, js, frontend, user management, calendar, reg/log
 
 [Maxmilián Dao](https://www.github.com/MaxmilianDao) 
 
-- Api stuff, tbd
+- Api/graphql, composer, frontend, mailer, idea, server
 
 
 

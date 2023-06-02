@@ -180,8 +180,14 @@ class AnimeSearch
         $html .= '<input type="hidden" name="release_date" value="' . $anime['startDate']['year'] . '-' . $anime['startDate']['month'] . '-' . $anime['startDate']['day'] . '">';
         $html .= '<input type="hidden" name="latest_episode" value="' . $anime['airingSchedule']['nodes'][0]['episode'] . '">';
         $html .= '<input type="hidden" name="airing_date" value="' . date('Y-m-d H:i:s', $anime['airingSchedule']['nodes'][0]['airingAt']) . '">';
-        $html .= '<button type="submit" name="add">Like</button></form>';
 
+        $dbConn = new MySQLiDB();
+        $select = $dbConn->_select('anime', [], ['idUser' => $_SESSION['idUser'], 'idAnime' => $anime['id']]);
+        if (count($select)) {
+            $html .= '<button type="submit" name="add">Dislike</button></form>';
+        } else{
+            $html .= '<button type="submit" name="add">Like</button></form>';
+        }
         return $html;
     }
 }

@@ -29,26 +29,48 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     // Generate a random verification code
     $verificationCode = rand(100000, 999999);
-
+    $mail = new PHPMailer(true);
 
     // Send the verification email
-    $mail = new PHPMailer;
-    //$mail->isSMTP();
-    //$mail->Host = 'lex.divoch@gmail.com';
-    //$mail->Port = 465;
-    //$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-    //$mail->SMTPAuth = true;
-//    $mail->isSendmail();
-    $mail->setFrom('lex.divoch@gmail.com', 'kalani');
-    $mail->addReplyTo('lex.divoch@gmail.com', 'Kalani');
-    $mail->addAddress($email);
-    $mail->Subject = 'Email Verification';
-    $mail->Body = 'Please enter the following verification code in order to verify your email address: ' . $verificationCode;
-    if (!$mail->send()) {
-        echo 'There was an error sending the verification email: ' . $mail->ErrorInfo;
-    }else{
-        echo 'Email sent';
+    try {
+        //Server settings
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'lex.divoch@gmail.com';
+        $mail->Password = 'pubveyxlegnveqya';
+        $mail->SMTPOptions = array(
+            'ssl' => array(
+                'verify_peer' => false,
+                'verify_peer_name' => false,
+                'allow_self_signed' => true
+            )
+        );
+        $mail->SMTPSecure = 'ssl';
+        $mail->Port = 587;
+
+        //Send Email
+        $mail->setFrom('lex.divoch@gmail.com');
+
+        //Recipients
+        $mail->addAddress($email);
+        $mail->addReplyTo('lex.divoch@gmail.com');
+
+        //Content
+        $mail->isHTML(true);
+        $mail->Subject = "Account registration confirmation";
+        $message = "Here is the code" . $verificationCode;
+        $mail->Body    = $message;
+
+        $mail->send();
+
+
+
+    } catch (Exception $e) {
+        $_SESSION['result'] = 'Message could not be sent. Mailer Error: '.$mail->ErrorInfo;
+        $_SESSION['status'] = 'error';
     }
+    
 
     // Check if username or email already exists
     $existing_user = $db->_select("user", array(), array("name" => $username));
@@ -81,7 +103,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     // Redirect the user to the login/verification page
     //header("Location: verification.php");
-    header("Location: login.php");
+    header("location:verification.php?name=".$username."&email=".$email."");
     exit();
 }
 

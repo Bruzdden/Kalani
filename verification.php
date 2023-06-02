@@ -9,8 +9,9 @@ $db = new MySQLiDB();
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $code = $_POST["code"];
     $select = $db->_select('user', [], ['code' => $code]);
-    if (count($select) == 1){
-        $result = $db->_update('user', 'idUser', $idUser, ['rank' => 0]);
+    if (count($select)){
+        $user = $select[0];
+        $result = $db->_update('user', 'idUser', $user["idUser"], ['rank' => 0]);
         if ($result) {
             echo "User rank updated successfully";
             header("Location: login.php");

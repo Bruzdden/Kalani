@@ -52,11 +52,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         //Content
         $mail->isHTML(true);
         $mail->Subject = "Account registration confirmation";
-        $message = "Here is the code" . $verificationCode;
+        $message = "Here is the code: " . $verificationCode;
         $mail->Body = $message;
 
         $mail->send();
-        
+
     } catch (Exception $e) {
         $_SESSION['result'] = 'Message could not be sent. Mailer Error: '.$mail->ErrorInfo;
         $_SESSION['status'] = 'error';

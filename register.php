@@ -35,42 +35,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
         //Server settings
         $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com';
+        $mail->Host = 'smtp.office365.com';
         $mail->SMTPAuth = true;
-        $mail->Username = 'lex.divoch@gmail.com';
-        $mail->Password = 'pubveyxlegnveqya';
-        $mail->SMTPOptions = array(
-            'ssl' => array(
-                'verify_peer' => false,
-                'verify_peer_name' => false,
-                'allow_self_signed' => true
-            )
-        );
-        $mail->SMTPSecure = 'ssl';
+        $mail->Username = 'maxmilian.dao@outlook.com';
+        $mail->Password = 'w6bdSq#$ ';
+        $mail->SMTPSecure = 'tls';
         $mail->Port = 587;
 
         //Send Email
-        $mail->setFrom('lex.divoch@gmail.com');
+        $mail->setFrom('maxmilian.dao@outlook.com');
 
         //Recipients
         $mail->addAddress($email);
-        $mail->addReplyTo('lex.divoch@gmail.com');
+        $mail->addReplyTo('maxmilian.dao@outlook.com');
 
         //Content
         $mail->isHTML(true);
         $mail->Subject = "Account registration confirmation";
         $message = "Here is the code" . $verificationCode;
-        $mail->Body    = $message;
+        $mail->Body = $message;
 
         $mail->send();
-
-
-
+        
     } catch (Exception $e) {
         $_SESSION['result'] = 'Message could not be sent. Mailer Error: '.$mail->ErrorInfo;
         $_SESSION['status'] = 'error';
     }
-    
+
 
     // Check if username or email already exists
     $existing_user = $db->_select("user", array(), array("name" => $username));

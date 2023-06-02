@@ -31,14 +31,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $verificationCode = rand(100000, 999999);
     $mail = new PHPMailer(true);
 
+    $settings = parse_ini_file('config.ini');
+
     // Send the verification email
     try {
         //Server settings
         $mail->isSMTP();
         $mail->Host = 'smtp.office365.com';
         $mail->SMTPAuth = true;
-        $mail->Username = 'maxmilian.dao@outlook.com';
-        $mail->Password = 'w6bdSq#$ ';
+        $mail->Username = $settings['Credentials']['Username'];
+        $mail->Password = $settings['Credentials']['Password'];
         $mail->SMTPSecure = 'tls';
         $mail->Port = 587;
 

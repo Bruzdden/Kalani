@@ -19,15 +19,12 @@ $db = new MySQLiDB();
 </head>
 
 <body>
-
 	<?php
 	require_once("header.php");
-
 	?>
 	<div class="image-container">
 		<img src="/app/res/img/kalani.png" alt="kalani">
 	</div>
-
 
 	<?php
 	//require_once("graphql.php");
@@ -60,6 +57,7 @@ $db = new MySQLiDB();
                 }
             }
             QUERY;
+	
 	$queryPopular = <<<'QUERY'
 			query ($search: String) {
 				Page {
@@ -99,7 +97,6 @@ $db = new MySQLiDB();
 
 		echo $htmlContainerNew;
 		echo $htmlContainerPopular;
-
 	?>
 
 	<section class="section">
@@ -112,10 +109,6 @@ $db = new MySQLiDB();
 
 			$calendar = new Calendar();
 			$calendar->stylesheet();
-
-
-
-
 
 			if (isset($_SESSION["name"])) {
 				$queryCalendar = <<<'QUERY'
@@ -149,7 +142,6 @@ $db = new MySQLiDB();
 				$dataCalendar = $animeSearch->fetchData($queryCalendar);
 				$select = $db->_select('anime', [], ['idUser' => $_SESSION['idUser']]);
 
-
 				$animeMap = [];
 				foreach ($dataCalendar as $anime) {
 					$animeMap[$anime['id']] = $anime['title']['english'];
@@ -175,15 +167,9 @@ $db = new MySQLiDB();
 			}
 
 			$calendar->display();
-
-
-
-
-
 			?>
 		</a>
 		</div>
-
 	</section>
 	<footer>
 	<div class="container">

@@ -15,10 +15,10 @@ $db = new MySQLiDB();
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="style.css">
-	<link rel="stylesheet" href="calendar.css">
-	<link rel="stylsheet" type="text/css" href="/css/calendar.min.css">
-	<link rel="icon" type="image/x-icon" href="favicon.ico">
+	<link rel="stylesheet" href="/app/css/style.css">
+	<link rel="stylesheet" href="/app/css/calendar.css">
+	<link rel="stylsheet" type="text/css" href="/app/css/calendar.min.css">
+	<link rel="icon" type="image/x-icon" href="/app/res/img/favicon.ico">
 	<title>Kalani</title>
 </head>
 
@@ -29,7 +29,7 @@ $db = new MySQLiDB();
 
 	?>
 	<div class="image-container">
-		<img src="kalani.png" alt="kalani">
+		<img src="/app/res/img/kalani.png" alt="kalani">
 	</div>
 
 
@@ -109,7 +109,7 @@ $db = new MySQLiDB();
 	<section class="section">
 
 		<div class="section">
-		<a href="calendar.php" class="a-calendar">
+		<a href="/app/calendar/calendar.php" class="a-calendar">
 			<?php
 			require $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 			require_once($_SERVER['DOCUMENT_ROOT'] ."/app/calendar/calendarClass.php");

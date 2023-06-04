@@ -45,7 +45,7 @@ if (isset($_SESSION["idUser"])) {
 					<ul class="userlist" id="list">
 					<li class="listitem">
 					<div class="logout">
-					<button onclick="window.location.href=\'../app/login/logout.php\'">Logout</button>
+					<button onclick="window.location.href=\'/app/login/logout.php\'">Logout</button>
 					</div></li></ul></div>';}
 			else {
 				echo '<div class="user">
@@ -53,12 +53,12 @@ if (isset($_SESSION["idUser"])) {
 					<ul class="userlist" id="list">
 					<li class="listitem">
 						<div class="login">
-							<button onclick="window.location.href=\'../app/login/login.php\'">Login</button>
+							<button onclick="window.location.href=\'/app/login/login.php\'">Login</button>
 						</div>
 					</li>
 					<li class="listitem">
 						<div class="register">
-							<button onclick="window.location.href=\'../app/login/register.php\'">Register</button>
+							<button onclick="window.location.href=\'/app/login/register.php\'">Register</button>
 						</div>
 					</li>
 				</ul></div>';}

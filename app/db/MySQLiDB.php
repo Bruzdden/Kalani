@@ -6,19 +6,12 @@ require_once "IDB.php";
 // Implement IDB Interface
 class MySQLiDB implements IDB {
     private $db;
-    function __construct($filepath = '/conf/db.ini') {
-        $file = dirname(__DIR__) . $filepath;
-
-        if (!$settings = parse_ini_file($file, TRUE)) {
-            throw new Exception('Unable to open ' . $file);
-        }
-
-        $mysqli = new mysqli(
-            $settings['database']['host'],
-            $settings['database']['username'],
-            $settings['database']['password'],
-            $settings['database']['schema'],
-        );
+    function __construct {
+        $host = getenv('DB_HOST');
+        $username = getenv('DB_UN');
+        $password = getenv('DB_PW');
+        $schema = getenv('DB_SCHEMA');
+        $mysqli = new mysqli($host, $username, $password, $schema);
 
         if ($mysqli->connect_error) {
             die('Connect Error: ' . $mysqli->connect_error);

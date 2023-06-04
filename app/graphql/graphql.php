@@ -3,11 +3,9 @@ session_start();
 
 require $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 require_once(dirname(__DIR__) . "/db/MySQLiDB.php");
+
 // Create a new MySQLiDB instance
 $db = new MySQLiDB();
-
-
-
 use GuzzleHttp\Client;
 
 class AnimeSearch
@@ -21,7 +19,7 @@ class AnimeSearch
         $this->query = <<<'QUERY'
             query ($search: String) {
                 Page {
-                    media (search: $search, type: ANIME, sort: FAVOURITES_DESC, status: RELEASING) {
+                    media (search: $search, type: ANIME, sort: FAVOURITES_DESC, status: RELEASING, isAdult: FALSE) {
                         id
                         title {
                             english
@@ -235,11 +233,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add"])) {
         header('Location: /index.php');
         exit();
 }
-
-
-
-
-
 ?>
-
-

@@ -3,12 +3,8 @@ require_once($_SERVER['DOCUMENT_ROOT'] ."/app/graphql/graphql.php");
 require_once($_SERVER['DOCUMENT_ROOT'] ."/app/db/MySQLiDB.php");
 // Create a new MySQLiDB instance
 $db = new MySQLiDB();
-
-
-
-
-
 ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -40,7 +36,7 @@ $db = new MySQLiDB();
     $queryNew = <<<'QUERY'
             query ($search: String) {
                 Page {
-                    media (search: $search, type: ANIME, sort: START_DATE_DESC, status: RELEASING) {
+                    media (search: $search, type: ANIME, sort: START_DATE_DESC, status: RELEASING, isAdult: FALSE) {
                         id
                         title {
                             english
@@ -67,7 +63,7 @@ $db = new MySQLiDB();
 	$queryPopular = <<<'QUERY'
 			query ($search: String) {
 				Page {
-					media (search: $search, type: ANIME, sort: TRENDING_DESC, status: RELEASING) {
+					media (search: $search, type: ANIME, sort: TRENDING_DESC, status: RELEASING, isAdult: FALSE) {
 						id
 						title {
 							english

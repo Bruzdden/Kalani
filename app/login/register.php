@@ -46,11 +46,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->Port = 587;
 
         //Send Email
-        $mail->setFrom('maxmilian.dao@outlook.com');
+        $mail->setFrom($SMTP_UN);
 
         //Recipients
         $mail->addAddress($email);
-        $mail->addReplyTo('maxmilian.dao@outlook.com');
+        $mail->addReplyTo($SMTP_UN);
 
         //Content
         $mail->isHTML(true);

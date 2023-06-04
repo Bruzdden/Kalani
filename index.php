@@ -33,7 +33,7 @@ $db = new MySQLiDB();
     $queryNew = <<<'QUERY'
             query ($search: String) {
                 Page {
-                    media (search: $search, type: ANIME, sort: START_DATE_DESC, status: RELEASING) {
+                    media (search: $search, type: ANIME, sort: START_DATE_DESC, status: RELEASING, isAdult: false) {
                         id
                         title {
                             english
@@ -61,7 +61,7 @@ $db = new MySQLiDB();
 	$queryPopular = <<<'QUERY'
 			query ($search: String) {
 				Page {
-					media (search: $search, type: ANIME, sort: TRENDING_DESC, status: RELEASING, isAdult: FALSE) {
+					media (search: $search, type: ANIME, sort: TRENDING_DESC, status: RELEASING, isAdult: false) {
 						id
 						title {
 							english

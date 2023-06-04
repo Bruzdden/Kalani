@@ -1,9 +1,8 @@
 <?php
 session_start();
 
-require __DIR__ . '/vendor/autoload.php';
-require_once "IDB.php";
-require_once "MySQLiDB.php";
+require $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
+require_once(dirname(__DIR__)."../db/MySQLiDB.php");
 // Create a new MySQLiDB instance
 $db = new MySQLiDB();
 

@@ -1,7 +1,7 @@
 <?php
 
 require_once("graphql.php");
-require_once("header.php");
+require_once($_SERVER['DOCUMENT_ROOT'] ."/header.php");
 
 $searchInput = $_POST['search'];
 
@@ -74,5 +74,5 @@ echo $html;
 </style>
 
 <body>
-    <script src="script.js"></script>
+    <script src="/app/js/script.js"></script>
 </body>

@@ -1,5 +1,5 @@
 <?php
-require_once "MySQLiDB.php";
+require_once($_SERVER['DOCUMENT_ROOT'] ."/app/db/MySQLiDB.php");
 // Create a new MySQLiDB instance
 $db = new MySQLiDB();
 
@@ -23,16 +23,16 @@ if (isset($_SESSION["idUser"])) {
 
 <nav class="navbar">
        <div class="navbar_left">
-		   <a href="index.php"><img class="halo" src="logo.svg" alt="Logo"></a>
+		   <a href="/index.php"><img class="halo" src="/app/res/img/logo.svg" alt="Logo"></a>
 		   <ul>
-			   <li><a href="calendar.php">Calendar</a></li>
-			   <li><a href="login.php">List</a></li>
+			   <li><a href="../app/calendar/calendar.php">Calendar</a></li>
+			   <li><a href="../app/login/login.php">List</a></li>
 			   <li><a href="#">Contact</a></li>
 		   </ul>
 	   </div>
 		<div class="navbar_right">
 		<div class="searchbar">
-			<form action="graphqlShow.php" method="POST">
+			<form action="../app/graphql/graphqlShow.php" method="POST">
 				<input type="text" name="search" placeholder="Search...">
 				<button type="submit">Search</button>
 			</form>
@@ -41,24 +41,24 @@ if (isset($_SESSION["idUser"])) {
 		<?php
 			if (isset($_SESSION['idUser'])){
 				echo '<div class="user">
-					<button class="userbtn" id="button"><img  class="pfp" src="profile.png"></button>
+					<button class="userbtn" id="button"><img  class="pfp" src="/app/res/img/profile.png"></button>
 					<ul class="userlist" id="list">
 					<li class="listitem">
 					<div class="logout">
-					<button onclick="window.location.href=\'logout.php\'">Logout</button>
+					<button onclick="window.location.href=\'../app/login/logout.php\'">Logout</button>
 					</div></li></ul></div>';}
 			else {
 				echo '<div class="user">
-					<button class="userbtn" id="button"><img class="pfp" src="profile.png" width="20px" height="20px"></button>
+					<button class="userbtn" id="button"><img class="pfp" src="/app/res/img/profile.png" width="20px" height="20px"></button>
 					<ul class="userlist" id="list">
 					<li class="listitem">
 						<div class="login">
-							<button onclick="window.location.href=\'login.php\'">Login</button>
+							<button onclick="window.location.href=\'../app/login/login.php\'">Login</button>
 						</div>
 					</li>
 					<li class="listitem">
 						<div class="register">
-							<button onclick="window.location.href=\'register.php\'">Register</button>
+							<button onclick="window.location.href=\'../app/login/register.php\'">Register</button>
 						</div>
 					</li>
 				</ul></div>';}

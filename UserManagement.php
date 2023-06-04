@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require_once 'mySQLiDB.php';
+require_once($_SERVER['DOCUMENT_ROOT'] ."/app/db/MySQLiDB.php");
 
 
 
@@ -14,7 +14,7 @@ $users = $db->_select('user',[], array("name" => $_SESSION["name"]));
 if (count($users)){
     $user = $users[0];
     if (!isset($_SESSION['name']) || $user['rank'] != 2) {
-        header('Location: login.php');
+        header('Location: /app/login/login.php');
         exit();
     }
 }

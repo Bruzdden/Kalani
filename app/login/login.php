@@ -1,38 +1,58 @@
 <?php
 session_start();
-require_once "MySQLiDB.php";
+
+// Check if user is logged in
+if (isset($_SESSION['idUser'])) {
+    header('Location: /index.php');
+    exit();
+}
+
+
+//It needs mysqlidb class so this will include it
+require_once(dirname(__DIR__)."../db/MySQLiDB.php");
 
 // Create a new MySQLiDB instance
 $db = new MySQLiDB();
 
 
-if ($_SERVER["REQUEST_METHOD"] == "POST"){
-    $code = $_POST["code"];
-    $select = $db->_select('user', [], ['code' => $code]);
-    if (count($select)){
-        $user = $select[0];
-        $result = $db->_update('user', 'idUser', $user["idUser"], ['rank' => 0]);
-        if ($result) {
-            echo "User rank updated successfully";
-            header("Location: login.php");
-            exit();
-        } 
-        else {
-            $error = $db->getLastError();
-            echo "Error updating user: " . print_r($error, true);
-        }  
-        }
-    else{
-        echo 'This is not the code';
-    }
-}
+// Check if the login form was submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["login"])) {
 
+    // Retrieve the user's credentials from the form
+    $username = $_POST["name"];
+    $password = $_POST["password"];
+
+    // Perform a SELECT query to retrieve the user's information
+    $result = $db->_select("user", [], ["name" => $username]);
+
+    // Check if the query returned a row
+    if (count($result) == 1) {
+
+        // Verify the hashed password
+        $user = $result[0];
+        if (password_verify($password, $user["password"])) {
+
+            $_SESSION["idUser"] = $user["idUser"];
+            $_SESSION["name"] = $user["name"];
+            $_SESSION["rank"] = $user["rank"];
+
+
+        }
+    }
+
+    // Display an error message if the login failed
+    $error = "Invalid username or password";
+}
+if (isset($_SESSION["name"])) {
+    header("Location: /index.php");
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Verification code</title>
+    <title>Login</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -102,6 +122,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         .form-group input:valid ~ span::before{
             width: 100%;
         }
+        .submit-btn{
+            width: 100%;
+            height: 50px;
+            border: 1px solid;
+            background: #683E8C;
+            border-radius: 25px;
+            font-size: 18px;
+            color: #e9f4fb;
+            font-weight: 700;
+            cursor: pointer;
+            outline: none;
+        }
+        .submit-btn:hover{
+            border-color: #2691d9;
+            transition: .5s;
+        }
+        .signup_link{
+            margin: 30px 0;
+            text-align: center;
+            font-size: 16px;
+            color: #666666;
+        }
 
         @media only screen and (max-width: 600px) {
             .container {
@@ -114,17 +156,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 </head>
 <body>
     <div class="container">
-        <h1>Verification <code></code></h1>
+        <h1>Login</h1>
         <?php if (isset($error)): ?>
             <div style="color: red;"><?php echo $error; ?></div>
         <?php endif; ?>
         <form method="post">
             <div class="form-group">
-                <input type="text" name="code" class="form-control" required>
+                <input type="text" name="name" class="form-control" required>
                 <span></span>
-                <label for="code">Code:</label>
+                <label for="name">Username:</label>
             </div>
-            <input type="submit" value="Register" class="submit-btn">
+            <div class="form-group">
+                <input type="password" name="password" class="form-control" required>
+                <span></span>
+                <label for="password">Password:</label>
+            </div>
+            <div>
+                <button type="submit" name="login" class="submit-btn">Login</button>
+            </div>
+            <div class="signup_link">
+                <button onclick="window.location.href='register.php'">Not registered yet?</button>
+            </div>
         </form>
     </div>
     <script src="script.js"></script>

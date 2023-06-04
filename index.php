@@ -1,6 +1,6 @@
 <?php
-require_once("graphql.php");
-require_once "MySQLiDB.php";
+require_once($_SERVER['DOCUMENT_ROOT'] ."/app/graphql/graphql.php");
+require_once($_SERVER['DOCUMENT_ROOT'] ."/app/db/MySQLiDB.php");
 // Create a new MySQLiDB instance
 $db = new MySQLiDB();
 
@@ -111,8 +111,8 @@ $db = new MySQLiDB();
 		<div class="section">
 		<a href="calendar.php" class="a-calendar">
 			<?php
-			require __DIR__ . '/vendor/autoload.php';
-			require_once("calendarClass.php");
+			require $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
+			require_once($_SERVER['DOCUMENT_ROOT'] ."/app/calendar/calendarClass.php");
 
 			$calendar = new Calendar();
 			$calendar->stylesheet();
@@ -204,6 +204,6 @@ $db = new MySQLiDB();
 		</div>
 	</div>
 	</footer>
-	<script src="script.js"></script>
+	<script src="/app/js/script.js"></script>
 </body>
 </html>

@@ -1,13 +1,13 @@
 <?php
-require_once("graphql.php");
-require_once "MySQLiDB.php";
-require __DIR__ . '/vendor/autoload.php';
+require_once(dirname(__DIR__)."../graphql/graphql.php");
+require_once(dirname(__DIR__)."../db/MySQLiDB.php");
+require $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 require_once("calendarClass.php");
 
 $animeSearch = new AnimeSearch;
 
 if (!isset($_SESSION["name"])) {
-    header("Location: login.php");
+    header("Location: ../login/login.php");
     exit();
 }
 
@@ -78,5 +78,5 @@ $calendar->stylesheet();
 
     $calendar->display();
     ?>
-    <script src="script.js"></script>
+    <script src="../app/js/script.js"></script>
 </body>

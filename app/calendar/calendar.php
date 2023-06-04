@@ -7,7 +7,7 @@ require_once("calendarClass.php");
 $animeSearch = new AnimeSearch;
 
 if (!isset($_SESSION["name"])) {
-    header("Location: ../login/login.php");
+    header("Location: /app/login/login.php");
     exit();
 }
 
@@ -27,10 +27,10 @@ $calendar->stylesheet();
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="style.css">
-	<link rel="stylesheet" href="calendar.css">
+	<link rel="stylesheet" href="/app/css/style.css">
+	<link rel="stylesheet" href="/app/css/calendar.css">
 	<link rel="stylsheet" type="text/css" href="/vendor/benhall14/php-calendar/html/css/calendar.min.css">
-	<link rel="icon" type="image/x-icon" href="favicon.ico">
+	<link rel="icon" type="image/x-icon" href="/app/res/img/favicon.ico">
 	<title>Kalani</title>
 </head>
 

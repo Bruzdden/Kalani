@@ -9,7 +9,7 @@ if (isset($_SESSION['idUser'])) {
 
 
 //It needs mysqlidb class so this will include it
-require_once(dirname(__DIR__)."../db/MySQLiDB.php");
+require_once(dirname(__DIR__)."/db/MySQLiDB.php");
 
 // Create a new MySQLiDB instance
 $db = new MySQLiDB();

@@ -194,7 +194,7 @@ class AnimeSearch
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add"])) {
         if (!isset($_SESSION["name"])) {
-            header("Location: login.php");
+            header("Location: /app/login/login.php");
             exit();
         }
         $animeId = $_POST["anime_id"];
@@ -216,7 +216,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add"])) {
         if (count($select) == 1) {
             $delete = $db->_delete_anime('anime', [$_SESSION['idUser'], $animeId], ['idUser', 'idAnime']);
             if ($delete) {
-                header('Location: index.php');
+                header('Location: /index.php');
                 exit();
             } else {
                 $error = $db->getLastError();
@@ -232,7 +232,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add"])) {
             exit();
         }
 
-        header('Location: index.php');
+        header('Location: /index.php');
         exit();
 }
 

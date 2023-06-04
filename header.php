@@ -14,9 +14,6 @@ if (isset($_SESSION["idUser"])) {
 				$error = $db->getLastError();
 				echo "Error deleting user: " . print_r($error, true);
 			}
-			if(session_destroy()){
-                header("Location: /index.php");
-            }
 		}
 	}
 }

@@ -96,7 +96,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     // Redirect the user to the login/verification page
     //header("Location: verification.php");
-    header("location: login.php?name=".$username."&email=".$email."");
+    header("location: verification.php?name=".$username."&email=".$email."");
     exit();
 }
 

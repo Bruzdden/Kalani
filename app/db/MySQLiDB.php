@@ -6,7 +6,7 @@ require_once "IDB.php";
 // Implement IDB Interface
 class MySQLiDB implements IDB {
     private $db;
-    function __construct {
+    function __construct() {
         $host = getenv('DB_HOST');
         $username = getenv('DB_UN');
         $password = getenv('DB_PW');

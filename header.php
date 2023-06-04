@@ -14,7 +14,9 @@ if (isset($_SESSION["idUser"])) {
 				$error = $db->getLastError();
 				echo "Error deleting user: " . print_r($error, true);
 			}
-			session_destroy();
+			if(session_destroy()){
+                header("Location: /index.php");
+            }
 		}
 	}
 }
@@ -25,14 +27,14 @@ if (isset($_SESSION["idUser"])) {
        <div class="navbar_left">
 		   <a href="/index.php"><img class="halo" src="/app/res/img/logo.svg" alt="Logo"></a>
 		   <ul>
-			   <li><a href="../app/calendar/calendar.php">Calendar</a></li>
-			   <li><a href="../app/login/login.php">List</a></li>
+			   <li><a href="/app/calendar/calendar.php">Calendar</a></li>
+			   <li><a href="/app/login/login.php">List</a></li>
 			   <li><a href="#">Contact</a></li>
 		   </ul>
 	   </div>
 		<div class="navbar_right">
 		<div class="searchbar">
-			<form action="../app/graphql/graphqlShow.php" method="POST">
+			<form action="/app/graphql/graphqlShow.php" method="POST">
 				<input type="text" name="search" placeholder="Search...">
 				<button type="submit">Search</button>
 			</form>

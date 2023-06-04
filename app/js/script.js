@@ -10,11 +10,3 @@ button.addEventListener('click', (event) => {
         list.style.display = 'none';
     }
 });
-
-/*button.addEventListener('mouseover', (event) => {
-    list.style.display = 'block';
-});
-
-button.addEventListener('mouseout', (event) => {
-    list.style.display = 'none';
-});*/

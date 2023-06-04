@@ -19,7 +19,7 @@ class AnimeSearch
         $this->query = <<<'QUERY'
             query ($search: String) {
                 Page {
-                    media (search: $search, type: ANIME, sort: FAVOURITES_DESC, status: RELEASING, isAdult: FALSE) {
+                    media (search: $search, type: ANIME, sort: FAVOURITES_DESC, status: RELEASING, isAdult: false) {
                         id
                         title {
                             english

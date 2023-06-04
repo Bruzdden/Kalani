@@ -1,6 +1,6 @@
 <?php
-require_once(dirname(__DIR__)."../graphql/graphql.php");
-require_once(dirname(__DIR__)."../db/MySQLiDB.php");
+require_once(dirname(__DIR__)."/graphql/graphql.php");
+require_once(dirname(__DIR__)."/db/MySQLiDB.php");
 require $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 require_once("calendarClass.php");
 

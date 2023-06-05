@@ -6,8 +6,13 @@ require_once(dirname(__DIR__)."/db/MySQLiDB.php");
 
 // Create a new MySQLiDB instance
 $db = new MySQLiDB();
+
+// Environment variables setup
 $SMTP_UN = getenv('SMTP_UN');
 $SMTP_PW = getenv('SMTP_PW');
+$SMTP_HOST = getenv('SMTP_HOST');
+$SMTP_PORT = getenv('SMTP_PORT');
+$SMTP_ENC = getenv('SMTP_ENC');
 
 // Check if the registration form has been submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -38,12 +43,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
         //Server settings
         $mail->isSMTP();
-        $mail->Host = 'smtp.office365.com';
+        $mail->Host = $SMTP_HOST;
         $mail->SMTPAuth = true;
         $mail->Username = $SMTP_UN;
         $mail->Password = $SMTP_PW;
-        $mail->SMTPSecure = 'tls';
-        $mail->Port = 587;
+        $mail->SMTPSecure = $SMTP_ENC;
+        $mail->Port = $SMTP_PORT;
 
         //Send Email
         $mail->setFrom($SMTP_UN);

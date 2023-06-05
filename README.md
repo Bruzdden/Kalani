@@ -20,13 +20,11 @@ The project name is a wordplay -> Kalendář + Anime = KalAni.
 
 #### Any reason, why use KalAni over AniList you may ask?
 
-None, none at all. 
-
-You really should use AniList, this is just a learning experience.
+- None, none at all. You really should use AniList, this is just a learning experience.
 
 #### Why did you do X, instead of Y ?!?!
 
-Bro idk why we did, if you have a better solution, you better tell us.
+- Bro idk why we did, if you have a better solution, you better tell us.
 
 ![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 ## Roadmap

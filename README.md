@@ -1,13 +1,11 @@
-
-![Logo](https://raw.githubusercontent.com/Bruzdden/Kalani/f9ca4a25a4fa619da136a4347af9edde0194beaa/logo.svg)
+![Logo](/app/res/img/logo.svg)
+<img src="/app/res/img/logo.svg" width="48">
 
 ![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 # Kalani
 
 This project is a joint effort, so we don't fail our WAP (Web Apps) class. 
 It's a calendar, in which you can see the airtime, of the next episode of your currently releasing anime show/movie!
-
-
 
 All the data we get about shows is thanks to the AniList GraphQL API (ily <3).
 
@@ -17,11 +15,9 @@ The project name is a wordplay -> Kalendář + Anime = KalAni.
 
 ![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
-
 ## FAQ
 
-#### Any reason, why not just use AniList you may ask?
-
+#### Any reason, why use KalAni over AniList you may ask?
 
 None, none at all. 
 
@@ -34,46 +30,54 @@ Bro idk why we did, if you have a better solution, you better tell us.
 ![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 ## Roadmap
 
-- Basic user management (manage users, admins)
+- Basic user management (manage users, admins) ✅
 
-- System for users so they can manage their shows (add, remove shows)
+- System for users so they can manage their shows (add, remove shows) ✅
 
-- Working calendar with required functionality
+- Working calendar with required functionality ✅
 
-- A templating system of some sort? (mandatory, no idea how to implement)
+- A templating system of some sort? ✅
 
-- Decent looking and responsive front-end
+- Decent looking and responsive front-end 🔜
 
-- Make a one click docker image of KalAni (a webserver with a db)
+- Make a one click docker image of KalAni (a webserver with a db) 🔜
 
-- Deploy the Docker image on a domain
+- Deploy on Heroku ✅
 
-- Google calendar integration (unlikely)
+- Deploy the Docker image on a domain 🔜
+
+- Google calendar integration (unlikely) 🔜
 
 - Other stuff i forgot
 
 ![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 ## Deployment
 
-### Docker
+#### Docker
 
 ```bash
-Don't have a dockerfile yet, will update soon
+Dont have a dockerfile yet, will update soon
 ```
 
-
-### Heroku
+#### Heroku
 
 1. Fork this repo
 
-2. Add these Environment Variables under Config Variables in the settings via the Heroku dashboard or HerokuCLI 
+2. Deploy this repo as an app, along with a ClearDB MySQL addon
+
+3. Add these Environment Variables located under Config Variables in the settings via the Heroku dashboard or alternatively use HerokuCLI 
+
 | KEY | VALUE |
 | ------------- |:-------------:|
-| DB_HOST      | Database host |
-| DB_UN      | Database username |
-| DB_SCHEMA | Database schema |
+| DB_HOST   | Database hostname/server |
 | DB_PW | Database password |
-
+| DB_UN     | Database username |
+| DB_SCHEMA | Database schema |
+| SMTP_UN | SMTP username/email |
+| SMTP_PW | SMTP password |
+| SMTP_HOST | SMTP hostname/server |
+| SMTP_PORT | SMTP port |
+| SMTP_ENC | SMTP encryption method |
 
 ![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 ## Demo
@@ -96,9 +100,10 @@ Don't have a dockerfile yet, will update soon
 - OOP
 - JS
 - Frontend
-- User management, signing in/up
+- User management, signing in/up, email verification method
 - Edited PHPCalendar fork from benhall14
 - Project file structure
+- Color palette 
 
 [Maxmilián Dao](https://www.github.com/MaxmilianDao) 
 
@@ -106,8 +111,11 @@ Don't have a dockerfile yet, will update soon
 - Composer 
 - Frontend
 - SMTP implementation of PHPMailer for email verification
-- Project idea
+- Project idea, management
 - Project deployment on heroku 
+- GitHub README.md
+- Storage of SMTP, DB credentials
+- Color palette 
 
 
 
@@ -124,4 +132,3 @@ Don't have a dockerfile yet, will update soon
 ## License
 
 [GPL 3.0](https://choosealicense.com/licenses/gpl-3.0/)
-

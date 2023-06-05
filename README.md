@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="/app/res/img/logo.svg" width="350">
+  <img src="/app/res/img/logo.svg" width="300">
 </p>
 
 ![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)

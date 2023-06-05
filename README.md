@@ -1,6 +1,4 @@
 
-(https://kal4ni.herokuapp.com/)
-
 ![Logo](https://raw.githubusercontent.com/Bruzdden/Kalani/f9ca4a25a4fa619da136a4347af9edde0194beaa/logo.svg) tbd fix this biiig logo make smol
 
 ![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)

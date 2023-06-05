@@ -1,4 +1,6 @@
-<img src="/app/res/img/logo.svg" width="350">
+<p align="center">
+  <img src="/app/res/img/logo.svg" width="350">
+</p>
 
 ![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 # Kalani

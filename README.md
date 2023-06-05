@@ -1,5 +1,4 @@
-![Logo](/app/res/img/logo.svg)
-<img src="/app/res/img/logo.svg" width="48">
+<img src="/app/res/img/logo.svg" width="250">
 
 ![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 # Kalani
